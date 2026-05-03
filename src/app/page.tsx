@@ -1,705 +1,970 @@
+import Image from "next/image";
+import type { ReactNode } from "react";
+
 const scholarshipHref =
   "mailto:academy@crafterstation.com?subject=Crafter%20Academy%20Scholarship";
+const syllabusHref =
+  "https://www.notion.so/Syllabus-15a9864d081f8217822d01e1aa0be8ea?pvs=21";
 
 const stats = [
-  { label: "Crafters", value: "20", detail: "Small first cohort" },
-  { label: "Weeks", value: "10", detail: "From idea to launch" },
-  { label: "Live classes", value: "20", detail: "2 sessions per week" },
-  { label: "Mentors", value: "5", detail: "4 mentees each" },
-  { label: "Scholarships", value: "10", detail: "For promising builders" },
-  { label: "Price", value: "$999", detail: "One-time cohort seat" },
+  { label: "Duration", value: "10 weeks" },
+  { label: "Classes", value: "20 live" },
+  { label: "Cohort", value: "20 seats" },
+  { label: "Scholarships", value: "10" },
 ];
 
-const companies = [
-  "Rappi",
-  "Nubank",
-  "Scotiabank",
-  "Kebo",
-  "Midudev",
-  "30x",
-  "Clerk",
-  "Zabio",
+const companyLogos = [
+  { name: "Crafter Station", src: "/brand/wordmark-black.svg" },
+  { name: "Nubank", src: "/logos/nubank.svg" },
+  { name: "Clerk", src: "/logos/clerk.svg" },
+  { name: "Rappi" },
+  { name: "Scotiabank" },
+  { name: "Midudev" },
+  { name: "30x" },
+  { name: "Zabio" },
 ];
 
-const curriculum = [
+const projectProof = [
+  ["tinte", "500+ stars", "Theme generator for VSCode and shadcn/ui."],
+  ["elements", "200+ stars", "Fullstack shadcn/ui components."],
+  ["text0", "Winner", "Smart autocomplete built in a hackathon sprint."],
+  ["lupa", "New", "Knowledge platform for AI agents."],
+];
+
+const programCards = [
   {
-    title: "Product Thinking",
-    eyebrow: "Find the right problem",
-    items: [
-      "Come up with ideas by studying real markets, trends, and products people already want.",
-      "Think of products as craft, not just software, with taste, positioning, and constraints.",
-      "Build the mindset to validate early adopters before polishing the wrong thing.",
-    ],
+    label: "01",
+    stage: "Product",
+    title: "Find a product people understand",
+    text: "Narrow the user, promise, market argument, and first product surface before writing another loose feature.",
+    outcome: "User, problem, promise",
   },
   {
-    title: "Building",
-    eyebrow: "Use code and AI as leverage",
-    items: [
-      "Create production-grade full-stack apps with databases, auth, AI, queues, billing, and deployment.",
-      "Use world-class tools without drowning in setup or burning unnecessary tokens.",
-      "Practice with templates, snippets, prompts, and guides that help you follow along live.",
-    ],
+    label: "02",
+    stage: "System",
+    title: "Build with production constraints",
+    text: "Ship AI workflows, auth, data, demos, billing-ready surfaces, and the connective tissue that turns code into product.",
+    outcome: "AI, auth, data, demo",
   },
   {
-    title: "Shipping",
-    eyebrow: "Distribution turns projects into products",
-    items: [
-      "Learn distribution, launch timing, content creation, demos, personal brand, and ad campaigns.",
-      "Launch on Product Hunt, Hacker News, LinkedIn, X, communities, newsletters, or the channel that fits.",
-      "Charge real customers with pricing, checkout, webhooks, plans, limits, and invoices.",
-    ],
+    label: "03",
+    stage: "Signal",
+    title: "Demo under real pressure",
+    text: "Use Demo Day to expose what works, what is confusing, and what needs to be sharpened before launch.",
+    outcome: "Public critique loop",
+  },
+  {
+    label: "04",
+    stage: "Launch",
+    title: "Launch with a complete story",
+    text: "Package the product, landing page, demo, pricing, and public narrative so people can use, share, and buy it.",
+    outcome: "Market-ready release",
   },
 ];
 
-const operatingSystem = [
-  "Select a project in week 1 and use the cohort to keep shaping it.",
-  "Submit one private task each week for mentor review.",
-  "Publish one public build-in-public task each week with demos or lessons.",
-  "Work in WhatsApp mentor groups with 4 crafters per mentor.",
-  "Use up to 3 weekly 1-1 mentoring hours across each mentor group.",
-  "Demo in week 5, then launch publicly in week 10.",
+const builderFit = [
+  "You already understand programming fundamentals.",
+  "You want public deadlines, critique, and launch pressure.",
+  "You care about product taste, distribution, and business outcomes.",
 ];
 
-const weekPlan = [
-  ["01", "Problems and full-stack foundations"],
-  ["02", "Public profile and LLM fundamentals"],
-  ["03", "Taste, prompting, auth, and protected AI apps"],
-  ["04", "Product demos, decks, and agent orchestration"],
-  ["05", "Demo Day and mentor-reviewed product plan"],
-  ["06", "Pricing, Polar, checkout, webhooks, and entitlements"],
-  ["07", "Marketing, ads, growth experiments, and WhatsApp agents"],
-  ["08", "Launch playbook plus voice, image, and video AI"],
-  ["09", "Production polish and mentor product reviews"],
-  ["10", "Launch Day, metrics, learnings, and next iteration"],
+const notFor = [
+  "You need a beginner programming course.",
+  "You want passive videos without live work.",
+  "You are not ready to make and defend product decisions.",
 ];
 
-const included = [
-  "10-week cohort with 20 builders",
-  "2 live classes every week",
-  "5 mentors with small WhatsApp groups",
-  "Private mentor-reviewed challenges",
-  "Public build-in-public challenges",
-  "Week 5 and week 10 demo days",
-  "Guides, snippets, prompts, and curated prep material",
-  "A shipping rhythm built around one real product",
+const milestones = [
+  {
+    week: "Weeks 1-2",
+    title: "Find the product",
+    text: "Problem, audience, promise, product wedge, and technical base.",
+  },
+  {
+    week: "Weeks 3-4",
+    title: "Build the system",
+    text: "AI apps, auth, data, agents, demos, and product UI proof.",
+  },
+  {
+    week: "Week 5",
+    title: "Demo Day",
+    text: "Show what exists, collect signal, and sharpen the launch plan.",
+  },
+  {
+    week: "Weeks 6-10",
+    title: "Launch",
+    text: "Pricing, growth, polish, metrics, public story, and Launch Day.",
+  },
+];
+
+const artifacts = [
+  "Working AI product",
+  "Product landing page",
+  "Demo Day pitch",
+  "Checkout-ready offer",
+  "Launch story",
+  "Public release plan",
+];
+
+const team = [
+  {
+    name: "Anthony Cueva",
+    role: "Product Engineer",
+    image: "/team/cueva.png",
+  },
+  { name: "Shiara Arauzo", role: "Design Engineer", image: "/team/shiara.png" },
+  {
+    name: "Cristian Correa",
+    role: "Data & Software Engineer",
+    image: "/team/cris.png",
+  },
+  { name: "Railly Hugo", role: "Design Engineer", image: "/team/railly.png" },
+  {
+    name: "Nicolas Vargas",
+    role: "Backend Developer",
+    image: "/team/nicolas.png",
+  },
+  {
+    name: "Gabriel Antunes",
+    role: "AI Engineer & Full-Stack Developer",
+    image: "/team/gabriel.png",
+  },
 ];
 
 const faqs = [
   {
-    question: "Who is Crafter Academy for?",
+    question: "Is this for beginners?",
     answer:
-      "It is for people with programming knowledge who want to turn coding into product leverage. If you can read a recursive Fibonacci function and understand what is happening, you have enough technical base to apply.",
-  },
-  {
-    question: "Do I need to know how to code?",
-    answer:
-      "Yes. This is not a first programming course. We will move fast through full-stack apps, AI features, auth, databases, billing, launches, and production polish.",
+      "No. Crafter Academy is for programmers who already understand code and want to turn that skill into shipped products.",
   },
   {
     question: "What will I build?",
     answer:
-      "You will pick a project from week 1, improve it through the program, demo it in week 5, and launch it in week 10. You can pivot if the evidence tells you to, but the goal is to ship something real.",
+      "One real product. You will shape it through the cohort, demo it in week 5, and prepare it for public launch by week 10.",
   },
   {
-    question: "What is taught?",
+    question: "How technical is it?",
     answer:
-      "The full stack from zero to product: product thinking, AI-assisted building, production tools, databases, auth, queues, billing, distribution, demos, marketing, ads, pricing, and launch strategy.",
+      "Technical enough to cover AI, auth, databases, agents, billing-ready flows, deployment, and polish. Every technical choice connects back to product and launch.",
   },
   {
-    question: "How do the private and public challenges work?",
+    question: "What does it cost?",
     answer:
-      "Every week has one private challenge reviewed by mentors and one public challenge where you share a demo, lesson, or progress update. The private task improves craft. The public task builds distribution muscle.",
-  },
-  {
-    question: "How does mentorship work?",
-    answer:
-      "There are 5 mentors. Each mentor works with 4 crafters in a WhatsApp group and can offer up to 3 weekly 1-1 mentoring hours to that group, plus connections to other Crafter Station members when useful.",
-  },
-  {
-    question: "What happens on demo days?",
-    answer:
-      "Week 5 is a mid-cohort demo where you show the product as it is and receive pressure-tested feedback. Week 10 is launch day, focused on product, go-to-market strategy, pricing, metrics, and next steps.",
-  },
-  {
-    question: "How much does it cost?",
-    answer:
-      "The first cohort seat is USD 999. It covers 20 live classes, mentorship, program operations, review cycles, and the cohort infrastructure around shipping.",
+      "A Cohort 01 seat is USD 999. It covers the 10-week live cohort, 20 classes, feedback cycles, materials, Demo Day, and Launch Day.",
   },
   {
     question: "Are scholarships available?",
     answer:
-      "Yes. We will give 10 scholarships to students with promising talent who align with the program mindset: curious, consistent, generous with progress, and serious about shipping.",
-  },
-  {
-    question: "How do I apply for a scholarship?",
-    answer:
-      "Email academy@crafterstation.com with a short note about what you have built, why you want to join, and what you want to ship during the cohort.",
-  },
-  {
-    question: "Is this only for LATAM?",
-    answer:
-      "Crafter Station is rooted in LATAM and the cohort is designed around that community, but the mindset is global: build well, distribute deliberately, and charge for value.",
-  },
-  {
-    question: "What if I miss a live class?",
-    answer:
-      "The program is designed around live momentum, but prerequisites and support material should be available outside the live sessions. Setup-heavy topics are better as recorded prep, not live-class time.",
+      "Yes. There are 10 scholarships for promising builders. Email academy@crafterstation.com with what you have built and what you want to ship next.",
   },
 ];
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function ButtonLink({
+  children,
+  href,
+  target,
+  variant = "primary",
+}: {
+  children: ReactNode;
+  href: string;
+  target?: "_blank";
+  variant?: "primary" | "secondary" | "dark" | "darkSecondary";
+}) {
+  const variants = {
+    primary:
+      "border-black bg-black text-white hover:bg-[rgb(var(--bg-inverted))] hover:ring-4 hover:ring-[rgb(var(--border-subtle))]",
+    secondary:
+      "border-[rgb(var(--border-subtle))] bg-[rgb(var(--bg-default))] text-[rgb(var(--content-emphasis))] hover:border-[rgb(var(--border-emphasis))] hover:bg-[rgb(var(--bg-subtle))] hover:ring-4 hover:ring-[rgb(var(--border-muted))]",
+    dark: "border-white bg-white text-black hover:bg-[rgb(var(--bg-subtle))]",
+    darkSecondary:
+      "border-white/15 bg-white/[0.06] text-white hover:border-white/30 hover:bg-white/[0.1]",
+  } as const;
+
   return (
-    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#9b431f]">
+    <a
+      className={`inline-flex h-8 w-fit items-center justify-center whitespace-nowrap rounded-lg border px-3 text-center text-[13px] leading-[19.5px] transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] focus:ring-offset-2 active:scale-[0.98] ${variants[variant]}`}
+      href={href}
+      rel={target === "_blank" ? "noreferrer" : undefined}
+      target={target}
+    >
+      {children}
+    </a>
+  );
+}
+
+function Eyebrow({ children }: { children: ReactNode }) {
+  return (
+    <p className="text-[13px] font-semibold leading-[19.5px] text-[rgb(var(--content-subtle))]">
       {children}
     </p>
   );
 }
 
-function PrimaryLink({
-  children,
-  href,
+function SectionHeader({
+  eyebrow,
+  title,
+  text,
+  align = "center",
 }: {
-  children: React.ReactNode;
-  href: string;
+  eyebrow: string;
+  title: string;
+  text: string;
+  align?: "center" | "left";
 }) {
   return (
-    <a
-      className="inline-flex min-h-12 items-center justify-center border border-[#17130d] bg-[#17130d] px-5 text-center text-xs font-semibold uppercase tracking-[0.22em] text-[#f9f1df] transition hover:-translate-y-0.5 hover:bg-[#2d2417] focus:outline-none focus:ring-2 focus:ring-[#9b431f] focus:ring-offset-2 focus:ring-offset-[#f5efe2]"
-      href={href}
+    <div
+      className={`mb-12 ${
+        align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-2xl"
+      }`}
     >
-      {children}
-    </a>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 className="mt-3 text-balance font-heading text-[36px] font-medium leading-10 tracking-normal text-[rgb(var(--content-emphasis))] md:text-5xl md:leading-none">
+        {title}
+      </h2>
+      <p className="mt-5 text-base leading-6 text-[#525252] sm:text-lg sm:leading-7">
+        {text}
+      </p>
+    </div>
   );
 }
 
-function SecondaryLink({
-  children,
-  href,
+function MetricPill({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-2xl border border-[#e5e5e5] bg-white px-4 py-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+      <p className="font-mono text-[0.66rem] uppercase tracking-[0.16em] text-[#737373]">
+        {label}
+      </p>
+      <p className="mt-1 text-sm font-semibold text-[#171717]">{value}</p>
+    </div>
+  );
+}
+
+function HeroProof() {
+  return (
+    <div className="relative mx-auto w-full max-w-[38rem] lg:mr-0">
+      <div className="absolute -top-8 right-8 h-32 w-32 rounded-full bg-[#22c55e]/15 blur-3xl" />
+      <div className="absolute -bottom-8 left-4 h-40 w-40 rounded-full bg-[#fb923c]/15 blur-3xl" />
+      <div className="relative overflow-hidden rounded-[1.75rem] border border-[#d4d4d4] bg-white shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
+        <div className="flex items-center justify-between border-[#e5e5e5] border-b px-4 py-3">
+          <div className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-full bg-[#ef4444]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#f59e0b]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#22c55e]" />
+          </div>
+          <span className="rounded-full border border-[#e5e5e5] px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-[#737373]">
+            Cohort OS
+          </span>
+        </div>
+
+        <div className="grid gap-4 p-4 sm:p-5">
+          <div className="grid gap-3 sm:grid-cols-[1.1fr_0.9fr]">
+            <div className="rounded-2xl border border-[#e5e5e5] bg-[#fafafa] p-4">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-sm font-medium text-[#171717]">
+                    Launch readiness
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-[#737373]">
+                    Demo Day signal is converted into launch tasks.
+                  </p>
+                </div>
+                <span className="rounded-full bg-[#dcfce7] px-2.5 py-1 text-xs font-medium text-[#166534]">
+                  Week 05
+                </span>
+              </div>
+              <div className="mt-6 grid grid-cols-5 gap-2">
+                {[72, 88, 64, 92, 78].map((height, index) => (
+                  <div
+                    className="flex h-24 items-end rounded-xl bg-white p-1.5"
+                    key={String(index)}
+                  >
+                    <span
+                      className="w-full rounded-lg bg-[linear-gradient(180deg,#22c55e,#3b82f6)]"
+                      style={{ height: `${height}%` }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-[#e5e5e5] bg-[#171717] p-4 text-white">
+              <p className="font-mono text-[0.66rem] uppercase tracking-[0.16em] text-white/50">
+                Next live class
+              </p>
+              <p className="mt-4 font-heading text-2xl font-medium tracking-normal">
+                AI product systems
+              </p>
+              <div className="mt-6 flex items-center justify-between rounded-xl bg-white/[0.08] px-3 py-2 text-sm text-white/72">
+                <span>20:00 PET</span>
+                <span>Live</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-[#e5e5e5] bg-white p-4">
+            <div className="mb-4 flex items-center justify-between gap-4">
+              <p className="text-sm font-medium text-[#171717]">
+                Launch checklist
+              </p>
+              <span className="text-xs text-[#737373]">6 artifacts</span>
+            </div>
+            <div className="grid gap-2">
+              {artifacts.slice(0, 4).map((artifact, index) => (
+                <div
+                  className="flex items-center justify-between rounded-xl border border-[#e5e5e5] bg-[#fafafa] px-3 py-2.5"
+                  key={artifact}
+                >
+                  <span className="text-sm text-[#404040]">{artifact}</span>
+                  <span
+                    className={`h-2 w-2 rounded-full ${
+                      index < 2 ? "bg-[#22c55e]" : "bg-[#d4d4d4]"
+                    }`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            {["Demo", "Price", "Launch"].map((item, index) => (
+              <div
+                className="rounded-2xl border border-[#e5e5e5] bg-[#fafafa] p-4"
+                key={item}
+              >
+                <p className="font-mono text-[0.66rem] uppercase tracking-[0.16em] text-[#a3a3a3]">
+                  0{index + 1}
+                </p>
+                <p className="mt-5 text-sm font-semibold text-[#171717]">
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LogoCell({ name, src }: { name: string; src?: string }) {
+  return (
+    <div className="flex min-h-24 items-center justify-center rounded-2xl border border-[#e5e5e5] bg-white px-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+      {src ? (
+        <Image
+          alt={`${name} logo`}
+          className="object-contain"
+          height={32}
+          src={src}
+          unoptimized
+          width={144}
+        />
+      ) : (
+        <span className="text-lg font-medium tracking-normal text-[#404040]">
+          {name}
+        </span>
+      )}
+    </div>
+  );
+}
+
+function ProgramCard({
+  index,
+  label,
+  outcome,
+  stage,
+  title,
+  text,
 }: {
-  children: React.ReactNode;
-  href: string;
+  index: number;
+  label: string;
+  outcome: string;
+  stage: string;
+  title: string;
+  text: string;
+}) {
+  const dividers = [
+    "border-b md:border-r lg:border-b-0",
+    "border-b lg:border-r lg:border-b-0",
+    "border-b md:border-r md:border-b-0 lg:border-r",
+    "md:border-b-0",
+  ];
+
+  return (
+    <article
+      className={`border-[rgb(var(--border-subtle))] p-6 transition-colors duration-200 ease-out hover:bg-[#fbfaf8] ${dividers[index]}`}
+    >
+      <div className="mb-10 flex items-center justify-between gap-4">
+        <span className="rounded-full border border-[rgb(var(--border-subtle))] bg-[rgb(var(--bg-muted))] px-2.5 py-1 font-mono text-[11px] leading-none tracking-[0.12em] text-[rgb(var(--content-subtle))]">
+          {label}
+        </span>
+        <span className="inline-flex items-center gap-2 text-[13px] font-medium leading-[19.5px] text-[rgb(var(--content-default))]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#b97044]" />
+          {stage}
+        </span>
+      </div>
+      <h3 className="font-heading text-xl font-medium tracking-normal text-[#171717]">
+        {title}
+      </h3>
+      <p className="mt-4 text-sm leading-6 text-[#525252]">{text}</p>
+      <div className="mt-8 border-[rgb(var(--border-subtle))] border-t pt-4">
+        <p className="text-[13px] font-medium leading-[19.5px] text-[rgb(var(--content-default))]">
+          {outcome}
+        </p>
+      </div>
+    </article>
+  );
+}
+
+function FitRows({ items, tone }: { items: string[]; tone: "yes" | "no" }) {
+  const positive = tone === "yes";
+
+  return (
+    <ul className="divide-y divide-[rgb(var(--border-muted))]">
+      {items.map((item) => (
+        <li
+          className="flex gap-3 px-5 py-4 text-sm leading-6 text-[#404040]"
+          key={item}
+        >
+          <span
+            className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-xs ${
+              positive
+                ? "border-[#d8b89d] bg-[#fbf4ee] text-[#8a4f2a]"
+                : "border-[rgb(var(--border-default))] bg-[rgb(var(--bg-subtle))] text-[rgb(var(--content-subtle))]"
+            }`}
+          >
+            {positive ? "+" : "-"}
+          </span>
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function FitDiagnostic() {
+  return (
+    <div className="overflow-hidden rounded-[1.75rem] border border-[rgb(var(--border-default))] bg-white shadow-[0_18px_60px_rgba(0,0,0,0.06)]">
+      <div className="flex flex-wrap items-start justify-between gap-4 border-[rgb(var(--border-subtle))] border-b px-5 py-4">
+        <div>
+          <p className="text-sm font-semibold text-[rgb(var(--content-emphasis))]">
+            Builder fit signal
+          </p>
+          <p className="mt-1 text-xs text-[rgb(var(--content-subtle))]">
+            What Cohort 01 is calibrated for.
+          </p>
+        </div>
+        <span className="rounded-full border border-[rgb(var(--border-subtle))] bg-[rgb(var(--bg-muted))] px-3 py-1 text-xs font-medium text-[rgb(var(--content-default))]">
+          Selective cohort
+        </span>
+      </div>
+
+      <div className="grid gap-4 p-4">
+        <section className="overflow-hidden rounded-2xl border border-[rgb(var(--border-subtle))] bg-white">
+          <div className="border-[rgb(var(--border-muted))] border-b px-5 py-3">
+            <p className="text-sm font-semibold text-[rgb(var(--content-emphasis))]">
+              Strong fit
+            </p>
+          </div>
+          <FitRows items={builderFit} tone="yes" />
+        </section>
+
+        <section className="overflow-hidden rounded-2xl border border-[rgb(var(--border-subtle))] bg-[rgb(var(--bg-subtle))]">
+          <div className="border-[rgb(var(--border-subtle))] border-b px-5 py-3">
+            <p className="text-sm font-semibold text-[rgb(var(--content-default))]">
+              Not calibrated for
+            </p>
+          </div>
+          <FitRows items={notFor} tone="no" />
+        </section>
+      </div>
+    </div>
+  );
+}
+
+function CurriculumVisual() {
+  return (
+    <div className="relative rounded-[1.75rem] border border-[#e5e5e5] bg-white p-5 shadow-[0_18px_60px_rgba(0,0,0,0.08)]">
+      <div className="absolute top-8 bottom-8 left-[2.55rem] w-px bg-[#e5e5e5]" />
+      <div className="grid gap-4">
+        {milestones.map((milestone, index) => (
+          <article
+            className="relative grid gap-4 rounded-2xl border border-[#e5e5e5] bg-[#fafafa] p-4 sm:grid-cols-[8.5rem_1fr] sm:items-start"
+            key={milestone.week}
+          >
+            <div className="relative flex items-center gap-3">
+              <span className="z-10 flex h-9 w-9 items-center justify-center rounded-full border border-[#d4d4d4] bg-white text-xs font-semibold text-[#404040]">
+                {index + 1}
+              </span>
+              <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#737373]">
+                {milestone.week}
+              </p>
+            </div>
+            <div>
+              <h3 className="font-heading text-xl font-medium tracking-normal text-[#171717]">
+                {milestone.title}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-[#525252]">
+                {milestone.text}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ArtifactBoard() {
+  return (
+    <div className="overflow-hidden rounded-[1.75rem] border border-[#d4d4d4] bg-white shadow-[0_24px_80px_rgba(0,0,0,0.08)]">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-[#e5e5e5] border-b px-5 py-4">
+        <div>
+          <p className="text-sm font-semibold text-[#171717]">Launch room</p>
+          <p className="mt-1 text-xs text-[#737373]">
+            One product, six proof assets.
+          </p>
+        </div>
+        <span className="rounded-full bg-[#dbeafe] px-3 py-1.5 text-xs font-medium text-[#1d4ed8]">
+          Cohort 01
+        </span>
+      </div>
+      <div className="grid gap-4 p-5 lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="rounded-2xl border border-[#e5e5e5] bg-[#171717] p-5 text-white">
+          <p className="font-mono text-xs uppercase tracking-[0.16em] text-white/45">
+            Public story
+          </p>
+          <h3 className="mt-8 max-w-sm font-heading text-3xl font-medium leading-none tracking-normal">
+            Make the work obvious enough for strangers to care.
+          </h3>
+          <div className="mt-10 grid gap-2">
+            {["Problem", "Promise", "Proof", "Price"].map((item) => (
+              <div
+                className="flex items-center justify-between rounded-xl bg-white/[0.08] px-3 py-2 text-sm text-white/72"
+                key={item}
+              >
+                <span>{item}</span>
+                <span className="h-1.5 w-12 rounded-full bg-white/30" />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {artifacts.map((artifact, index) => (
+            <div
+              className="rounded-2xl border border-[#e5e5e5] bg-[#fafafa] p-4"
+              key={artifact}
+            >
+              <div className="mb-8 flex items-center justify-between">
+                <span className="rounded-lg bg-white px-2 py-1 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-[#737373]">
+                  A{index + 1}
+                </span>
+                <span
+                  className={`h-2 w-2 rounded-full ${
+                    index < 3 ? "bg-[#22c55e]" : "bg-[#d4d4d4]"
+                  }`}
+                />
+              </div>
+              <p className="text-sm font-semibold text-[#171717]">{artifact}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TeamCard({
+  image,
+  name,
+  role,
+}: {
+  image: string;
+  name: string;
+  role: string;
 }) {
   return (
-    <a
-      className="inline-flex min-h-12 items-center justify-center border border-[#17130d]/25 px-5 text-center text-xs font-semibold uppercase tracking-[0.22em] text-[#17130d] transition hover:-translate-y-0.5 hover:border-[#17130d] hover:bg-[#fff8e9] focus:outline-none focus:ring-2 focus:ring-[#9b431f] focus:ring-offset-2 focus:ring-offset-[#f5efe2]"
-      href={href}
-    >
-      {children}
-    </a>
+    <article className="rounded-2xl border border-[#e5e5e5] bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+      <Image
+        alt={`${name}, ${role}`}
+        className="aspect-square w-full rounded-xl object-cover grayscale transition duration-200 ease-out hover:grayscale-0"
+        height={320}
+        src={image}
+        width={320}
+      />
+      <div className="p-2 pt-3">
+        <h3 className="text-sm font-semibold text-[#171717]">{name}</h3>
+        <p className="mt-1 text-xs leading-5 text-[#737373]">{role}</p>
+      </div>
+    </article>
+  );
+}
+
+function PricingCard() {
+  return (
+    <div className="mx-auto max-w-5xl overflow-hidden rounded-[1.75rem] border border-[#d4d4d4] bg-white shadow-[0_24px_80px_rgba(0,0,0,0.08)]">
+      <div className="grid gap-0 lg:grid-cols-[1fr_0.82fr]">
+        <div className="p-6 sm:p-8 lg:p-10">
+          <Eyebrow>Reserve Cohort 01</Eyebrow>
+          <h2 className="mt-3 font-heading text-[36px] font-medium leading-10 tracking-normal text-[rgb(var(--content-emphasis))] md:text-5xl md:leading-none">
+            USD 999
+          </h2>
+          <p className="mt-5 max-w-xl text-base leading-7 text-[#525252] sm:text-lg">
+            One seat in the 10-week live cohort: product strategy, AI build,
+            launch pressure, feedback cycles, materials, Demo Day, and Launch
+            Day.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href="/checkout">Reserve your seat</ButtonLink>
+            <ButtonLink href={scholarshipHref} variant="secondary">
+              Apply for scholarship
+            </ButtonLink>
+          </div>
+        </div>
+        <div className="border-[#e5e5e5] border-t bg-[#fafafa] p-6 sm:p-8 lg:border-t-0 lg:border-l lg:p-10">
+          <div className="grid gap-3">
+            {[
+              ["Seats", "20"],
+              ["Live classes", "20"],
+              ["Duration", "10 weeks"],
+              ["Scholarships", "10 available"],
+              ["Milestones", "Demo Day + Launch Day"],
+            ].map(([label, value]) => (
+              <div
+                className="flex items-center justify-between gap-4 rounded-2xl border border-[#e5e5e5] bg-white px-4 py-3 text-sm"
+                key={label}
+              >
+                <span className="text-[#737373]">{label}</span>
+                <span className="font-semibold text-[#171717]">{value}</span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 text-sm leading-6 text-[#525252]">
+            Scholarships are for promising builders who can show what they have
+            already built and what they want to ship next.
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f5efe2] text-[#17130d]">
-      <div className="mx-auto flex w-full max-w-7xl flex-col px-5 py-5 sm:px-8 lg:px-10">
-        <header className="flex flex-col gap-4 border-[#17130d]/20 border-b pb-5 text-xs uppercase tracking-[0.22em] sm:flex-row sm:items-center sm:justify-between">
-          <a className="font-semibold" href="#top">
-            Crafter Academy
+    <main
+      className="min-h-screen bg-[rgb(var(--bg-muted))] text-[rgb(10_10_10)]"
+      id="top"
+    >
+      <header className="sticky top-0 z-50 border-[rgb(var(--border-subtle))] border-b bg-[rgb(var(--bg-muted))]/88 backdrop-blur-xl">
+        <div className="mx-auto grid h-16 w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center px-4 sm:px-6 lg:px-8">
+          <a className="flex min-w-0 items-center gap-2.5" href="#top">
+            {/* biome-ignore lint/performance/noImgElement: Local SVG brand mark is already optimized. */}
+            <img
+              alt=""
+              aria-hidden="true"
+              className="h-7 w-7 shrink-0"
+              src="/brand/icon-black.svg"
+            />
+            <span className="truncate font-heading text-base font-medium tracking-normal text-[rgb(var(--content-emphasis))]">
+              Crafter Academy
+            </span>
           </a>
           <nav
             aria-label="Main navigation"
-            className="flex flex-wrap gap-4 text-[#17130d]/65"
+            className="hidden items-center gap-1 rounded-full border border-[rgb(var(--border-subtle))] bg-white px-1.5 py-1 shadow-[0_1px_2px_rgba(0,0,0,0.03)] md:flex"
           >
-            <a className="transition hover:text-[#17130d]" href="#curriculum">
-              Curriculum
+            <a
+              className="rounded-full px-3 py-1.5 text-sm font-medium text-[rgb(var(--content-default))] transition hover:bg-[rgb(var(--bg-subtle))] hover:text-[rgb(var(--content-emphasis))]"
+              href="#program"
+            >
+              Program
             </a>
-            <a className="transition hover:text-[#17130d]" href="#scholarships">
-              Scholarships
+            <a
+              className="rounded-full px-3 py-1.5 text-sm font-medium text-[rgb(var(--content-default))] transition hover:bg-[rgb(var(--bg-subtle))] hover:text-[rgb(var(--content-emphasis))]"
+              href="#outcomes"
+            >
+              Outcomes
             </a>
-            <a className="transition hover:text-[#17130d]" href="#pricing">
+            <a
+              className="rounded-full px-3 py-1.5 text-sm font-medium text-[rgb(var(--content-default))] transition hover:bg-[rgb(var(--bg-subtle))] hover:text-[rgb(var(--content-emphasis))]"
+              href="#syllabus"
+            >
+              Syllabus
+            </a>
+            <a
+              className="rounded-full px-3 py-1.5 text-sm font-medium text-[rgb(var(--content-default))] transition hover:bg-[rgb(var(--bg-subtle))] hover:text-[rgb(var(--content-emphasis))]"
+              href="#pricing"
+            >
               Pricing
             </a>
-            <a className="transition hover:text-[#17130d]" href="#faq">
+            <a
+              className="rounded-full px-3 py-1.5 text-sm font-medium text-[rgb(var(--content-default))] transition hover:bg-[rgb(var(--bg-subtle))] hover:text-[rgb(var(--content-emphasis))]"
+              href="#faq"
+            >
               FAQ
             </a>
           </nav>
-        </header>
+          <a
+            className="justify-self-end inline-flex h-8 w-fit items-center justify-center whitespace-nowrap rounded-lg border border-black bg-black px-3 text-[13px] leading-[19.5px] text-white transition-all duration-200 ease-out hover:bg-[rgb(var(--bg-inverted))] hover:ring-4 hover:ring-[rgb(var(--border-subtle))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] focus:ring-offset-2 active:scale-[0.98]"
+            href="/checkout"
+          >
+            Reserve seat
+          </a>
+        </div>
+      </header>
 
-        <section
-          className="grid min-h-[calc(100vh-5rem)] gap-10 border-[#17130d]/20 border-b py-14 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:py-24"
-          id="top"
-        >
-          <div className="flex flex-col justify-between gap-12">
-            <div>
-              <div className="mb-8 flex flex-wrap gap-3 text-xs uppercase tracking-[0.22em] text-[#17130d]/70">
-                <span className="border border-[#17130d]/20 px-3 py-2">
-                  By Crafter Station
-                </span>
-                <span className="border border-[#17130d]/20 px-3 py-2">
-                  Cohort 01
-                </span>
-                <span className="border border-[#17130d]/20 px-3 py-2">
-                  LATAM builders
-                </span>
-              </div>
-
-              <h1 className="max-w-5xl text-balance font-heading text-6xl leading-[0.9] tracking-[-0.08em] sm:text-7xl md:text-8xl lg:text-[8.5rem]">
-                Building is cool. Shipping is everything.
-              </h1>
-            </div>
-
-            <div className="grid gap-6 lg:grid-cols-[0.78fr_1fr]">
-              <p className="font-heading text-2xl italic leading-snug text-[#9b431f] sm:text-3xl">
-                A 10-week program for programmers who want to build products
-                people can actually use, love, share, and buy.
-              </p>
-              <div className="space-y-6 text-base leading-8 text-[#17130d]/75 sm:text-lg">
-                <p>
-                  Crafter Station is a community with more than 600 builders
-                  across LATAM. We are creating Crafter Academy to share what we
-                  have learned in 5 years of building and shipping products
-                  people love.
-                </p>
-                <p>
-                  Some of us come from engineering backgrounds. We still believe
-                  engineering is a superpower. But engineering alone is not the
-                  finish line. Distribution is everything.
-                </p>
-                <div className="flex flex-col gap-3 pt-2 sm:flex-row">
-                  <PrimaryLink href="/checkout">Reserve your seat</PrimaryLink>
-                  <SecondaryLink href={scholarshipHref}>
-                    Ask about scholarships
-                  </SecondaryLink>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <aside className="grid content-between border border-[#17130d]/20 bg-[#fff8e9] p-5 shadow-[12px_12px_0_#17130d] sm:p-8 lg:shadow-[18px_18px_0_#17130d]">
-            <div className="flex items-start justify-between gap-6 border-[#17130d]/20 border-b pb-8">
-              <div>
-                <p className="text-xs uppercase tracking-[0.28em] text-[#17130d]/55">
-                  First cohort
-                </p>
-                <p className="mt-4 font-heading text-5xl leading-none tracking-[-0.08em] sm:text-7xl">
-                  $999
-                </p>
-              </div>
-              <div className="rounded-full border border-[#9b431f] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#9b431f]">
-                20 seats
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 border-[#17130d]/20 border-b py-8 text-sm uppercase tracking-[0.16em] text-[#17130d]/70">
-              <p>10 weeks</p>
-              <p>2 live classes/week</p>
-              <p>5 mentors</p>
-              <p>2 challenges/week</p>
-            </div>
-
-            <blockquote className="py-8 font-heading text-3xl leading-tight tracking-[-0.04em] sm:text-4xl">
-              "Coding gives you leverage. Shipping teaches you where to aim it."
-            </blockquote>
-
-            <div className="border-[#17130d]/20 border-t pt-6 text-sm leading-7 text-[#17130d]/70">
-              Team members come from world-class startups, companies, and
-              builder communities, including Rappi, Nubank, Scotiabank, Kebo,
-              Midudev, 30x, Clerk, Zabio, and more.
-            </div>
-          </aside>
-        </section>
-
-        <section className="grid gap-10 border-[#17130d]/20 border-b py-16 lg:grid-cols-[0.8fr_1.2fr] lg:py-24">
+      <section className="academy-grid relative overflow-hidden border-[rgb(var(--border-subtle))] border-b">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.08),transparent_35%),linear-gradient(180deg,rgba(255,255,255,0.72),rgba(250,250,250,0.94))]" />
+        <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-4 pt-20 pb-16 sm:px-6 sm:pt-24 sm:pb-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-8 lg:pt-28 lg:pb-24">
           <div>
-            <SectionLabel>Why this exists</SectionLabel>
-            <h2 className="text-balance font-heading text-4xl leading-none tracking-[-0.06em] sm:text-5xl lg:text-6xl">
-              The gap is not code. The gap is turning code into momentum.
-            </h2>
-          </div>
-          <div className="grid gap-8 text-lg leading-9 text-[#17130d]/75 sm:text-xl sm:leading-10">
-            <p>
-              You already know how to code. That is rare, valuable, and still
-              not enough. Crafter Academy is built for the next step: using code
-              and AI to build real products, package them clearly, distribute
-              them deliberately, and charge for the value you create.
-            </p>
-            <p>
-              We will not spend live sessions watching someone install tools.
-              Setup, prerequisites, and mechanical prep should happen before
-              class. Live time is for thinking, building, feedback, taste,
-              launch pressure, and decisions that compound.
-            </p>
-          </div>
-        </section>
-
-        <section className="border-[#17130d]/20 border-b py-10">
-          <p className="mb-5 text-xs uppercase tracking-[0.28em] text-[#17130d]/55">
-            People in the team have worked around
-          </p>
-          <div className="grid grid-cols-2 border-[#17130d]/20 border-t sm:grid-cols-4 lg:grid-cols-8">
-            {companies.map((company) => (
-              <div
-                className="border-[#17130d]/20 border-b border-l px-3 py-5 text-center text-sm font-semibold uppercase tracking-[0.14em] first:border-l-0 sm:px-4"
-                key={company}
-              >
-                {company}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="border-[#17130d]/20 border-b py-16 lg:py-24">
-          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <SectionLabel>Program snapshot</SectionLabel>
-              <h2 className="font-heading text-4xl leading-none tracking-[-0.06em] sm:text-5xl">
-                Small, intense, public.
-              </h2>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[rgb(var(--border-default))] bg-[rgb(var(--bg-default))] px-3 py-1.5 text-sm text-[#525252] shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+              <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
+              Cohort 01 · 20 seats · Live in LATAM
             </div>
-            <p className="max-w-xl text-base leading-7 text-[#17130d]/70">
-              A cohort designed to make builders choose, finish, publish, and
-              learn from the market every week.
-            </p>
-          </div>
-
-          <div className="grid border-[#17130d]/20 border-t sm:grid-cols-2 lg:grid-cols-3">
-            {stats.map((stat) => (
-              <article
-                className="min-h-48 border-[#17130d]/20 border-b p-5 sm:p-7 lg:border-r lg:nth-[3n]:border-r-0"
-                key={stat.label}
-              >
-                <p className="text-xs uppercase tracking-[0.22em] text-[#17130d]/55">
-                  {stat.label}
-                </p>
-                <p className="mt-8 font-heading text-6xl leading-none tracking-[-0.08em] text-[#9b431f]">
-                  {stat.value}
-                </p>
-                <p className="mt-4 text-sm leading-6 text-[#17130d]/65">
-                  {stat.detail}
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid gap-10 border-[#17130d]/20 border-b py-16 lg:grid-cols-[0.7fr_1.3fr] lg:py-24">
-          <div>
-            <SectionLabel>Who should apply</SectionLabel>
-            <h2 className="font-heading text-4xl leading-none tracking-[-0.06em] sm:text-5xl">
-              For programmers ready to become product builders.
-            </h2>
-          </div>
-          <div className="grid gap-5 sm:grid-cols-3">
-            {[
-              "You can read a recursive Fibonacci function and understand it.",
-              "You are tired of tutorials that end before launch pressure begins.",
-              "You want mentors, peers, and a weekly rhythm that makes shipping public.",
-            ].map((item, index) => (
-              <article
-                className="border border-[#17130d]/20 bg-[#fff8e9] p-6"
-                key={item}
-              >
-                <span className="text-xs uppercase tracking-[0.24em] text-[#9b431f]">
-                  0{index + 1}
-                </span>
-                <p className="mt-8 text-base leading-7 text-[#17130d]/75">
-                  {item}
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section
-          className="border-[#17130d]/20 border-b py-16 lg:py-24"
-          id="curriculum"
-        >
-          <SectionLabel>What is taught</SectionLabel>
-          <div className="mb-10 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-            <h2 className="text-balance font-heading text-4xl leading-none tracking-[-0.06em] sm:text-6xl">
-              The full stack from zero to product.
-            </h2>
-            <p className="text-lg leading-9 text-[#17130d]/72">
-              Not only frameworks. Not only AI. Not only marketing. The program
-              connects product judgment, technical execution, distribution, and
-              monetization in one repeated loop.
-            </p>
-          </div>
-
-          <div className="grid gap-5 lg:grid-cols-3">
-            {curriculum.map((pillar, index) => (
-              <article
-                className="flex min-h-[30rem] flex-col justify-between border border-[#17130d]/20 bg-[#fff8e9] p-6"
-                key={pillar.title}
-              >
-                <div>
-                  <p className="text-xs uppercase tracking-[0.24em] text-[#9b431f]">
-                    0{index + 1} / {pillar.eyebrow}
-                  </p>
-                  <h3 className="mt-8 font-heading text-4xl leading-none tracking-[-0.05em]">
-                    {pillar.title}
-                  </h3>
-                </div>
-                <ul className="mt-10 space-y-5 text-sm leading-7 text-[#17130d]/72">
-                  {pillar.items.map((item) => (
-                    <li
-                      className="border-[#17130d]/15 border-t pt-5"
-                      key={item}
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid gap-10 border-[#17130d]/20 border-b py-16 lg:grid-cols-[0.82fr_1.18fr] lg:py-24">
-          <div>
-            <SectionLabel>How it works</SectionLabel>
-            <h2 className="font-heading text-4xl leading-none tracking-[-0.06em] sm:text-5xl">
-              A weekly operating system for shipping.
-            </h2>
-            <p className="mt-6 text-base leading-8 text-[#17130d]/70">
-              The cohort creates just enough structure to make progress visible:
-              private review for quality, public demos for distribution, and
-              mentor groups for accountability.
-            </p>
-          </div>
-
-          <ol className="grid gap-3">
-            {operatingSystem.map((item, index) => (
-              <li
-                className="grid gap-4 border border-[#17130d]/20 bg-[#fff8e9] p-5 sm:grid-cols-[5rem_1fr] sm:items-center"
-                key={item}
-              >
-                <span className="font-heading text-4xl leading-none tracking-[-0.06em] text-[#9b431f]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="text-base leading-7 text-[#17130d]/75">
-                  {item}
-                </span>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section className="border-[#17130d]/20 border-b py-16 lg:py-24">
-          <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <SectionLabel>Syllabus preview</SectionLabel>
-              <h2 className="font-heading text-4xl leading-none tracking-[-0.06em] sm:text-5xl">
-                Ten weeks, one product, increasing pressure.
-              </h2>
-            </div>
-            <a
-              className="text-sm font-semibold uppercase tracking-[0.22em] text-[#9b431f] underline underline-offset-8 transition hover:text-[#17130d]"
-              href="https://www.notion.so/Syllabus-15a9864d081f8217822d01e1aa0be8ea?pvs=21"
-              rel="noreferrer"
-              target="_blank"
-            >
-              Read the full syllabus
-            </a>
-          </div>
-
-          <div className="grid border-[#17130d]/20 border-t lg:grid-cols-2">
-            {weekPlan.map(([week, title]) => (
-              <article
-                className="grid gap-5 border-[#17130d]/20 border-b p-5 sm:grid-cols-[5rem_1fr] sm:p-6 lg:odd:border-r"
-                key={week}
-              >
-                <span className="text-xs uppercase tracking-[0.24em] text-[#17130d]/50">
-                  Week {week}
-                </span>
-                <h3 className="font-heading text-2xl leading-tight tracking-[-0.04em]">
-                  {title}
-                </h3>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid gap-10 border-[#17130d]/20 border-b py-16 lg:grid-cols-[1fr_1fr] lg:py-24">
-          <div className="border border-[#17130d]/20 bg-[#17130d] p-6 text-[#f9f1df] sm:p-8">
-            <SectionLabel>Mentorship</SectionLabel>
-            <h2 className="font-heading text-4xl leading-none tracking-[-0.06em] sm:text-5xl">
-              Small groups with operators, not spectators.
-            </h2>
-            <p className="mt-8 text-base leading-8 text-[#f9f1df]/75">
-              Five mentors work with four crafters each. The goal is not to sit
-              in lectures and collect notes. The goal is to make product
-              decisions, review work, improve taste, remove blockers, and keep
-              the shipping rhythm alive.
-            </p>
-          </div>
-
-          <div className="grid gap-5">
-            <article className="border border-[#17130d]/20 bg-[#fff8e9] p-6">
-              <p className="text-xs uppercase tracking-[0.24em] text-[#9b431f]">
-                Week 5
-              </p>
-              <h3 className="mt-6 font-heading text-4xl leading-none tracking-[-0.05em]">
-                Demo Day
-              </h3>
-              <p className="mt-5 text-base leading-7 text-[#17130d]/70">
-                Show the product as it exists, explain what you learned, and
-                leave with a sharper product plan for the second half.
-              </p>
-            </article>
-            <article className="border border-[#17130d]/20 bg-[#fff8e9] p-6">
-              <p className="text-xs uppercase tracking-[0.24em] text-[#9b431f]">
-                Week 10
-              </p>
-              <h3 className="mt-6 font-heading text-4xl leading-none tracking-[-0.05em]">
-                Launch Day
-              </h3>
-              <p className="mt-5 text-base leading-7 text-[#17130d]/70">
-                Present what you built, your go-to-market strategy, pricing,
-                metrics, learnings, and the next iteration after public launch.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section
-          className="grid gap-10 border-[#17130d]/20 border-b py-16 lg:grid-cols-[0.9fr_1.1fr] lg:py-24"
-          id="scholarships"
-        >
-          <div>
-            <SectionLabel>Scholarships</SectionLabel>
-            <h2 className="text-balance font-heading text-5xl leading-none tracking-[-0.07em] sm:text-6xl">
-              10 scholarships for promising builders.
-            </h2>
-          </div>
-          <div className="border border-[#9b431f] bg-[#fff8e9] p-6 sm:p-8">
-            <p className="font-heading text-3xl italic leading-tight text-[#9b431f] sm:text-4xl">
-              Talent is distributed. Access should move faster.
-            </p>
-            <div className="mt-8 space-y-5 text-base leading-8 text-[#17130d]/72">
-              <p>
-                We will give 10 scholarships to students with promising talent
-                who align with the Crafter mindset: curious, consistent,
-                shipping-oriented, and willing to share progress in public.
-              </p>
-              <p>
-                Send a short note with what you have built, what you want to
-                build next, and why this cohort is the right environment for
-                you.
-              </p>
-            </div>
-            <div className="mt-8">
-              <SecondaryLink href={scholarshipHref}>
-                Email academy@crafterstation.com
-              </SecondaryLink>
-            </div>
-          </div>
-        </section>
-
-        <section
-          className="grid gap-10 border-[#17130d]/20 border-b py-16 lg:grid-cols-[0.85fr_1.15fr] lg:py-24"
-          id="pricing"
-        >
-          <div>
-            <SectionLabel>Pricing</SectionLabel>
-            <h2 className="font-heading text-6xl leading-none tracking-[-0.08em] sm:text-8xl">
-              USD 999
-            </h2>
-            <p className="mt-6 max-w-md text-base leading-8 text-[#17130d]/70">
-              $40 per class across 20 live classes, plus program operations,
-              mentor support, review cycles, materials, and cohort
-              infrastructure.
+            <h1 className="max-w-2xl text-balance font-heading text-[36px] font-medium leading-10 tracking-normal text-[rgb(var(--content-emphasis))] md:text-5xl md:leading-[55.2px]">
+              Ship a real AI product in 10 weeks.
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-7 text-[#525252] md:text-xl md:leading-7">
+              Crafter Academy is a live cohort by Crafter Station for
+              programmers who already code and now need the product, taste, and
+              launch discipline to make something people can use, share, and
+              buy.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <PrimaryLink href="/checkout">Reserve with Polar</PrimaryLink>
-              <SecondaryLink href={scholarshipHref}>
-                Scholarship route
-              </SecondaryLink>
+              <ButtonLink href="/checkout">Reserve your seat</ButtonLink>
+              <ButtonLink
+                href={syllabusHref}
+                target="_blank"
+                variant="secondary"
+              >
+                View syllabus
+              </ButtonLink>
+            </div>
+            <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+              {stats.map((stat) => (
+                <MetricPill key={stat.label} {...stat} />
+              ))}
             </div>
           </div>
 
-          <div className="border border-[#17130d]/20 bg-[#fff8e9]">
-            <div className="border-[#17130d]/20 border-b p-6">
-              <p className="text-xs uppercase tracking-[0.24em] text-[#17130d]/55">
-                Included in the seat
+          <HeroProof />
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="rounded-[1.75rem] border border-[#e5e5e5] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] sm:p-6">
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <Eyebrow>Built from a shipping community</Eyebrow>
+              <p className="mt-3 max-w-xl font-heading text-3xl font-medium leading-9 tracking-normal text-[rgb(var(--content-emphasis))]">
+                Crafter Station has grown a 600+ builder community across LATAM.
               </p>
             </div>
-            <ul className="grid sm:grid-cols-2">
-              {included.map((item) => (
-                <li
-                  className="border-[#17130d]/20 border-b p-5 text-sm leading-7 text-[#17130d]/75 sm:odd:border-r"
-                  key={item}
-                >
-                  {item}
-                </li>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {companyLogos.map((logo) => (
+                <LogoCell key={logo.name} {...logo} />
               ))}
-            </ul>
-          </div>
-        </section>
-
-        <section
-          className="border-[#17130d]/20 border-b py-16 lg:py-24"
-          id="faq"
-        >
-          <div className="mb-10 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <SectionLabel>FAQ</SectionLabel>
-              <h2 className="font-heading text-4xl leading-none tracking-[-0.06em] sm:text-5xl">
-                The practical questions.
-              </h2>
             </div>
-            <p className="text-base leading-8 text-[#17130d]/70">
-              The program is intentionally selective and hands-on. If you are
-              deciding whether this is the right amount of pressure, start here.
-            </p>
           </div>
+        </div>
+      </section>
 
-          <div className="grid gap-3 lg:grid-cols-2">
-            {faqs.map((faq) => (
-              <details
-                className="group border border-[#17130d]/20 bg-[#fff8e9] p-5 open:bg-[#fff4d8]"
-                key={faq.question}
-              >
-                <summary className="cursor-pointer list-none text-base font-semibold leading-7 tracking-[-0.02em] marker:hidden">
-                  <span className="flex items-start justify-between gap-5">
-                    {faq.question}
-                    <span className="text-[#9b431f] transition group-open:rotate-45">
-                      +
-                    </span>
-                  </span>
-                </summary>
-                <p className="mt-5 text-sm leading-7 text-[#17130d]/70">
-                  {faq.answer}
-                </p>
-              </details>
+      <section
+        className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+        id="program"
+      >
+        <SectionHeader
+          eyebrow="Program"
+          text="The curriculum is built around one product and the real decisions needed to launch it. Less abstract coursework, more artifacts that survive contact with users."
+          title="The shortest path from code to market is a product loop."
+        />
+        <div className="overflow-hidden rounded-[1.75rem] border border-[rgb(var(--border-subtle))] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4">
+            {programCards.map((card, index) => (
+              <ProgramCard index={index} key={card.title} {...card} />
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="py-16 lg:py-24">
-          <div className="grid gap-10 border border-[#17130d]/20 bg-[#17130d] p-6 text-[#f9f1df] sm:p-10 lg:grid-cols-[1fr_0.7fr] lg:p-12">
-            <div>
-              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#d18b47]">
-                Cohort 01
-              </p>
-              <h2 className="text-balance font-heading text-5xl leading-none tracking-[-0.07em] sm:text-7xl">
-                20 crafters. 10 weeks. Ship something real.
-              </h2>
-            </div>
-            <div className="flex flex-col justify-end gap-6">
-              <p className="text-base leading-8 text-[#f9f1df]/72">
-                If you already know how to code, use the next 10 weeks to learn
-                how to make that code matter outside your editor.
-              </p>
-              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                <a
-                  className="inline-flex min-h-12 items-center justify-center border border-[#f9f1df] bg-[#f9f1df] px-5 text-center text-xs font-semibold uppercase tracking-[0.22em] text-[#17130d] transition hover:-translate-y-0.5 hover:bg-[#fff8e9] focus:outline-none focus:ring-2 focus:ring-[#d18b47]"
-                  href="/checkout"
-                >
-                  Reserve your seat
-                </a>
-                <a
-                  className="inline-flex min-h-12 items-center justify-center border border-[#f9f1df]/35 px-5 text-center text-xs font-semibold uppercase tracking-[0.22em] text-[#f9f1df] transition hover:-translate-y-0.5 hover:border-[#f9f1df] focus:outline-none focus:ring-2 focus:ring-[#d18b47]"
-                  href={scholarshipHref}
-                >
-                  Ask for scholarship info
-                </a>
-              </div>
+      <section className="border-[rgb(var(--border-subtle))] border-y bg-[#f7f4ee]">
+        <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:px-8">
+          <div>
+            <Eyebrow>Designed for serious builders</Eyebrow>
+            <h2 className="mt-3 max-w-2xl font-heading text-[36px] font-medium leading-10 tracking-normal text-[rgb(var(--content-emphasis))] md:text-5xl md:leading-none">
+              Not another beginner course.
+            </h2>
+            <p className="mt-5 max-w-xl text-lg leading-7 text-[#525252]">
+              This is for programmers who can build, but need the rhythm,
+              pressure, and product judgment that usually starts after the
+              tutorial ends.
+            </p>
+            <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#dfd8ce] bg-white/60 px-3 py-1.5 text-[13px] font-medium leading-[19.5px] text-[rgb(var(--content-default))]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#b97044]" />
+              Calibrated for builders with technical base
             </div>
           </div>
-        </section>
-      </div>
+          <FitDiagnostic />
+        </div>
+      </section>
+
+      <section
+        className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:px-8"
+        id="syllabus"
+      >
+        <div>
+          <SectionHeader
+            align="left"
+            eyebrow="10 weeks, one launch"
+            text="The sequence is simple: find the product, build the system, demo in public, and turn the signal into a launch."
+            title="A compressed path from idea to Launch Day."
+          />
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href={syllabusHref} target="_blank" variant="secondary">
+              View full syllabus
+            </ButtonLink>
+            <ButtonLink href="/checkout">Reserve your seat</ButtonLink>
+          </div>
+        </div>
+        <CurriculumVisual />
+      </section>
+
+      <section
+        className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+        id="outcomes"
+      >
+        <SectionHeader
+          eyebrow="Outcomes"
+          text="The cohort should leave you with product evidence, not a folder of disconnected exercises. Every week moves the launch room forward."
+          title="Build the product and the proof around it."
+        />
+        <ArtifactBoard />
+      </section>
+
+      <section className="border-[#e5e5e5] border-y bg-white">
+        <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:px-8">
+          <div>
+            <Eyebrow>Crafter Station team</Eyebrow>
+            <h2 className="mt-3 max-w-xl font-heading text-[36px] font-medium leading-10 tracking-normal text-[rgb(var(--content-emphasis))] md:text-5xl md:leading-none">
+              Led by people who ship in public.
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-7 text-[#525252] sm:text-lg">
+              Crafter Academy comes from the builders behind community events,
+              open-source projects, and shipped products across LATAM.
+            </p>
+            <div className="mt-8 grid max-w-lg grid-cols-3 gap-3">
+              {[
+                ["600+", "builders"],
+                ["50+", "events"],
+                ["25+", "products"],
+              ].map(([value, label]) => (
+                <div
+                  className="rounded-2xl border border-[#e5e5e5] bg-[#fafafa] p-4"
+                  key={label}
+                >
+                  <p className="font-heading text-2xl font-medium tracking-normal text-[rgb(var(--content-emphasis))]">
+                    {value}
+                  </p>
+                  <p className="mt-1 text-xs text-[#737373]">{label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {team.map((member) => (
+              <TeamCard key={member.name} {...member} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="grid gap-4 md:grid-cols-4">
+          {projectProof.map(([name, metric, text]) => (
+            <article
+              className="rounded-[1.5rem] border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+              key={name}
+            >
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#a3a3a3]">
+                Fig.
+              </p>
+              <h3 className="mt-6 font-heading text-2xl font-medium tracking-normal text-[rgb(var(--content-emphasis))]">
+                {name}
+              </h3>
+              <p className="mt-2 text-sm font-medium text-[#262626]">
+                {metric}
+              </p>
+              <p className="mt-4 text-sm leading-6 text-[#525252]">{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+        id="pricing"
+      >
+        <PricingCard />
+      </section>
+
+      <section
+        className="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+        id="faq"
+      >
+        <SectionHeader
+          eyebrow="FAQ"
+          text="Short answers for the practical questions before you reserve a seat."
+          title="Know before you apply."
+        />
+        <div className="grid gap-3">
+          {faqs.map((faq) => (
+            <details
+              className="group rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] open:border-[#d4d4d4]"
+              key={faq.question}
+            >
+              <summary className="cursor-pointer list-none text-lg font-medium tracking-normal text-[#171717] marker:hidden">
+                <span className="flex items-center justify-between gap-5">
+                  {faq.question}
+                  <span className="text-[#737373] transition-transform duration-200 ease-out group-open:rotate-45">
+                    +
+                  </span>
+                </span>
+              </summary>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-[#525252]">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="px-4 pb-4 sm:px-6 lg:px-8">
+        <div className="dark-grid relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-[#171717] px-6 py-16 text-center text-white shadow-[0_24px_80px_rgba(0,0,0,0.16)] sm:px-10 sm:py-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_0%,rgba(34,197,94,0.18),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(251,146,60,0.14),transparent_28%)]" />
+          <div className="relative mx-auto max-w-4xl">
+            {/* biome-ignore lint/performance/noImgElement: Local SVG brand mark is already optimized. */}
+            <img
+              alt="Crafter Station"
+              className="mx-auto h-8 w-auto"
+              src="/brand/logo-white.svg"
+            />
+            <h2 className="mt-8 text-balance font-heading text-[36px] font-medium leading-10 tracking-normal md:text-5xl md:leading-none">
+              Build, demo, and launch with Cohort 01.
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/62 sm:text-lg">
+              Twenty seats for programmers ready to turn code into a product
+              people can use, share, and buy.
+            </p>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <ButtonLink href="/checkout" variant="dark">
+                Reserve your seat
+              </ButtonLink>
+              <ButtonLink href={scholarshipHref} variant="darkSecondary">
+                Apply for scholarship
+              </ButtonLink>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
