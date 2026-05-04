@@ -136,6 +136,7 @@ const team = [
     role: "Backend Developer",
     image: "/team/nicolas.png",
   },
+  { name: "Railly Hugo", role: "Design Engineer", image: "/team/railly.png" },
   {
     name: "Anthony Cueva",
     role: "Product Engineer",
