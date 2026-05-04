@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Footer } from "../footer";
 
 export const metadata: Metadata = {
   title: "Syllabus | Crafter Academy",
@@ -9,287 +10,115 @@ export const metadata: Metadata = {
 
 type LiveSession = {
   title: string;
-  instructor?: string;
-  details: string[];
 };
 
 type SyllabusWeek = {
   week: number;
   theme: string;
-  asyncPrep: string[];
   liveOne: LiveSession;
   liveTwo: LiveSession;
-  privateChallenge: string;
-  publicChallenge: string;
 };
-
-const defaultPrep = ["No extra setup prerequisite. Come ready to build."];
 
 const syllabusWeeks: SyllabusWeek[] = [
   {
     week: 0,
     theme: "Problems and first deploy",
-    asyncPrep: [
-      "Claude Code or another coding agent/editor installed.",
-      "git, gh, node, npm, and bun installed.",
-    ],
     liveOne: {
-      title: "How to find (good) problems",
-      instructor: "Shiara",
-      details: [
-        "Product research and trend analysis.",
-        "Why copying existing products can be a valid starting point.",
-        "Product Hunt winners and other signal sources.",
-      ],
+      title: "Signal Hunting",
     },
     liveTwo: {
-      title: "Build and deploy a fullstack app",
-      instructor: "Anthony",
-      details: [
-        "Go from zero to deployed app using Claude Code.",
-        "Build a basic todo app with Next.js, shadcn/ui, Drizzle, and Neon.",
-        "Use GitHub and Vercel to ship it.",
-      ],
+      title: "Zero to URL",
     },
-    privateChallenge:
-      "Come up with 5 product ideas that went viral. Analyze why in writing.",
-    publicChallenge:
-      "Build and deploy a CRUD application. Record a ~1 minute demo and publish it on LinkedIn and X.",
   },
   {
     week: 1,
     theme: "LLMs and protected apps",
-    asyncPrep: defaultPrep,
     liveOne: {
-      title: "LLMs Hello World",
-      instructor: "Cris",
-      details: [
-        "What LLMs are, how they work, and how to use them.",
-        "OpenAI API, tools, temperature, OCR, and practical use cases.",
-        "Intro to AI SDK with examples.",
-      ],
+      title: "The LLM Workbench",
     },
     liveTwo: {
-      title: "Protect your app",
-      instructor: "Railly",
-      details: [
-        "Authentication with Clerk for B2C and B2B apps.",
-        "Rate limits and protected AI surfaces.",
-        "Build a basic chat app and limit messages to 10 per user/day.",
-      ],
+      title: "Walls, Keys, and Quotas",
     },
-    privateChallenge:
-      "Research 3 products that were ChatGPT wrappers and died or had to pivot. Write down what changed.",
-    publicChallenge:
-      "Add auth and an agentic chatbot mode to a CRUD app so the bot can perform CRUD actions. Record a ~1 minute demo and publish it on LinkedIn and X.",
   },
   {
     week: 2,
     theme: "Taste and agent orchestration",
-    asyncPrep: defaultPrep,
     liveOne: {
-      title: "Taste",
-      instructor: "Cris",
-      details: [
-        "Build something people will actually love using.",
-        "Prompting, visual references, and Claude Design workflows.",
-        "Use taste as a product constraint, not decoration.",
-      ],
+      title: "Taste Under Constraints",
     },
     liveTwo: {
-      title: "Orchestrating agents",
-      instructor: "Jibaru",
-      details: [
-        "Trigger.dev foundations for durable agent workflows.",
-        "Build a deep research agent.",
-        "Use Firecrawl and Exa as research inputs.",
-      ],
+      title: "The Agent Factory",
     },
-    privateChallenge:
-      "Research Trigger.dev queues and write an article explaining how they work.",
-    publicChallenge:
-      "Build an agent that does code reviews in PRs. Record a ~1 minute demo and publish it on LinkedIn and X.",
   },
   {
     week: 3,
     theme: "Demos and voice AI",
-    asyncPrep: defaultPrep,
     liveOne: {
-      title: "How to ship great product demos",
-      instructor: "Anthony",
-      details: [
-        "Demo hacks that make product value obvious.",
-        "Screencasting workflows for stronger launch assets.",
-        "Turn a feature into a story people understand quickly.",
-      ],
+      title: "The One-Minute Launch Film",
     },
     liveTwo: {
-      title: "Voice AI",
-      instructor: "Shiara",
-      details: [
-        "Voice AI product patterns.",
-        "ElevenLabs implementation basics.",
-        "Where voice input creates product leverage.",
-      ],
+      title: "Products That Talk Back",
     },
-    privateChallenge: "Research and compare other major voice AI providers.",
-    publicChallenge: "Build and publish an app with voice input.",
   },
   {
     week: 4,
     theme: "Demo Day",
-    asyncPrep: defaultPrep,
     liveOne: {
-      title: "Demo Day",
-      instructor: "Crafter mentors",
-      details: [
-        "Each crafter presents their product.",
-        "Use live critique to expose what is clear, risky, or missing.",
-      ],
+      title: "Demo Day: The Room Reacts",
     },
     liveTwo: {
-      title: "Demo Day",
-      instructor: "Crafter mentors",
-      details: [
-        "Continue product presentations and feedback.",
-        "Convert signal into the next product plan.",
-      ],
+      title: "From Feedback to Flight Plan",
     },
-    privateChallenge:
-      "Submit a mentor-reviewed product plan: target user, core promise, scope, risks, and launch plan.",
-    publicChallenge:
-      "Publicly share your Demo Day progress: what you built, what you learned, and what comes next.",
   },
   {
     week: 5,
     theme: "Pricing and billing",
-    asyncPrep: defaultPrep,
     liveOne: {
-      title: "How to charge people",
-      instructor: "Ignacio",
-      details: [
-        "Pricing models, free trials, credits, and subscriptions.",
-        "One-time payments and usage-based pricing.",
-        "How to decide what belongs in free vs paid.",
-      ],
+      title: "The Price Is the Product",
     },
     liveTwo: {
-      title: "Billing implementation",
-      instructor: "Anthony",
-      details: [
-        "Stripe checkout flows.",
-        "Webhooks, entitlements, plans, limits, and invoices.",
-        "Connect billing choices to product packaging.",
-      ],
+      title: "Checkout Without Guesswork",
     },
-    privateChallenge:
-      "Create pricing for your product. Define free vs paid, limits, and why someone would pay.",
-    publicChallenge:
-      "Add a pricing page or payment flow mock/implementation. Share your pricing logic publicly.",
   },
   {
     week: 6,
     theme: "Public profile and WhatsApp agents",
-    asyncPrep: defaultPrep,
     liveOne: {
-      title: "Building a public profile",
-      instructor: "Juan and Emmy",
-      details: [
-        "Why building in public matters.",
-        "How to publish work without sounding performative.",
-        "Turn weekly product progress into credibility.",
-      ],
+      title: "Your Builder Signal",
     },
     liveTwo: {
-      title: "WhatsApp agents",
-      instructor: "Emmy",
-      details: [
-        "Kapso foundations.",
-        "Build WhatsApp automation surfaces.",
-        "Ship agents where users already communicate.",
-      ],
+      title: "Agents in the Group Chat",
     },
-    privateChallenge:
-      "Research Langfuse and write an article explaining how you would use it and why.",
-    publicChallenge: "Create a WhatsApp bot and ship it.",
   },
   {
     week: 7,
     theme: "Launch and growth experiments",
-    asyncPrep: defaultPrep,
     liveOne: {
-      title: "Launch playbook",
-      instructor: "Ignacio",
-      details: [
-        "Product Hunt, Hacker News, Reddit, LinkedIn, X, and communities.",
-        "Newsletters, timing, assets, and launch sequencing.",
-        "Choose channels based on the product, not ego.",
-      ],
+      title: "Launch Like a Campaign",
     },
     liveTwo: {
-      title: "Ads and growth experiments",
-      instructor: "Juan",
-      details: [
-        "Google Ads basics.",
-        "Meta and TikTok creative testing.",
-        "Landing page conversion and analytics loops.",
-      ],
+      title: "Tiny Bets, Real Traffic",
     },
-    privateChallenge:
-      "Create a launch checklist with channels, copy, assets, and success metrics.",
-    publicChallenge:
-      "Run a small distribution experiment: post, DM, waitlist, ad test, community post, or landing page traffic push.",
   },
   {
     week: 8,
     theme: "Production polish and mentor review",
-    asyncPrep: defaultPrep,
     liveOne: {
-      title: "Production polish",
-      instructor: "Cris",
-      details: [
-        "Observability, logging, analytics, and error tracking.",
-        "Performance and security basics.",
-        "Onboarding polish before launch.",
-      ],
+      title: "The Last 10% That Converts",
     },
     liveTwo: {
-      title: "Mentor product reviews",
-      instructor: "Crafter mentors",
-      details: [
-        "UX, technical risks, positioning, pricing, and launch readiness.",
-        "No central live class: each crafter reviews with their mentor.",
-      ],
+      title: "Mentor War Room",
     },
-    privateChallenge:
-      "Fix the top 5 issues from mentor review. Submit the final launch checklist.",
-    publicChallenge:
-      "Post a shipping soon update with final demo, waitlist, or launch date.",
   },
   {
     week: 9,
     theme: "Launch Day",
-    asyncPrep: defaultPrep,
     liveOne: {
-      title: "Launch Day",
-      instructor: "Crafter mentors",
-      details: [
-        "Open session for final product presentations.",
-        "Each crafter shares what they achieved and the next steps.",
-      ],
+      title: "Launch Day: Go Public",
     },
     liveTwo: {
-      title: "Launch Day",
-      instructor: "Crafter mentors",
-      details: [
-        "Launch retrospectives and next iteration planning.",
-        "Turn launch day into a durable product loop.",
-      ],
+      title: "After the Spike",
     },
-    privateChallenge:
-      "Submit a final report: what you built, metrics, learnings, and next iteration.",
-    publicChallenge:
-      "Launch publicly through Product Hunt, Hacker News, LinkedIn, X, or the community channel that fits the product.",
   },
 ];
 
@@ -617,206 +446,55 @@ function RhythmSection() {
   );
 }
 
-function ContentList({
-  fallback = "No extra prerequisite.",
-  items,
-}: {
-  fallback?: string;
-  items: string[];
-}) {
-  if (items.length === 0) {
-    return <p className="text-sm leading-6 text-[#737373]">{fallback}</p>;
-  }
-
-  return (
-    <ul className="mt-3 space-y-2 text-sm leading-6 text-[#525252]">
-      {items.map((item) => (
-        <li className="flex gap-2" key={item}>
-          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b97044]" />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function LiveSessionBlock({ session }: { session: LiveSession }) {
-  return (
-    <div>
-      <p className="font-heading text-lg font-medium leading-6 tracking-normal text-[#171717]">
-        {session.title}
-      </p>
-      {session.instructor ? (
-        <p className="mt-1 text-xs font-medium uppercase tracking-[0.14em] text-[#737373]">
-          Led by {session.instructor}
-        </p>
-      ) : null}
-      <ContentList items={session.details} />
-    </div>
-  );
-}
-
-function ChallengeBlock({
-  children,
-  tone = "neutral",
-}: {
-  children: ReactNode;
-  tone?: "neutral" | "ship";
-}) {
-  return (
-    <div
-      className={`rounded-2xl border p-3 text-sm leading-6 ${
-        tone === "ship"
-          ? "border-[#d8b89d] bg-[#fbf4ee] text-[#4f3422]"
-          : "border-[#e5e5e5] bg-[#fafafa] text-[#525252]"
-      }`}
-    >
-      {children}
-    </div>
-  );
-}
-
-function SyllabusTable() {
-  const cellClass = "border-[#e5e5e5] border-t p-4 align-top";
-  const headerClass =
-    "px-4 py-3 text-left font-mono text-[0.66rem] font-medium uppercase tracking-[0.16em] text-[#737373]";
-
-  return (
-    <div className="hidden overflow-hidden rounded-[1.75rem] border border-[#d4d4d4] bg-white shadow-[0_24px_80px_rgba(0,0,0,0.08)] lg:block">
-      <table className="w-full table-fixed border-collapse">
-        <colgroup>
-          <col className="w-[12%]" />
-          <col className="w-[14%]" />
-          <col className="w-[19%]" />
-          <col className="w-[19%]" />
-          <col className="w-[18%]" />
-          <col className="w-[18%]" />
-        </colgroup>
-        <thead className="bg-[#fafafa]">
-          <tr>
-            <th className={headerClass} scope="col">
-              Week
-            </th>
-            <th className={headerClass} scope="col">
-              Async prep
-            </th>
-            <th className={headerClass} scope="col">
-              Live 1
-            </th>
-            <th className={headerClass} scope="col">
-              Live 2
-            </th>
-            <th className={headerClass} scope="col">
-              Private challenge
-            </th>
-            <th className={headerClass} scope="col">
-              Public challenge
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {syllabusWeeks.map((week) => (
-            <tr className="group" key={week.week}>
-              <th className={`${cellClass} bg-white`} scope="row">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#d4d4d4] bg-[#fafafa] text-xs font-semibold text-[#404040]">
-                  {week.week}
-                </span>
-                <p className="mt-4 font-heading text-lg font-medium leading-6 tracking-normal text-[#171717]">
-                  {week.theme}
-                </p>
-              </th>
-              <td className={cellClass}>
-                <ContentList items={week.asyncPrep} />
-              </td>
-              <td className={cellClass}>
-                <LiveSessionBlock session={week.liveOne} />
-              </td>
-              <td className={cellClass}>
-                <LiveSessionBlock session={week.liveTwo} />
-              </td>
-              <td className={cellClass}>
-                <ChallengeBlock>{week.privateChallenge}</ChallengeBlock>
-              </td>
-              <td className={cellClass}>
-                <ChallengeBlock tone="ship">
-                  {week.publicChallenge}
-                </ChallengeBlock>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function MobileField({
-  children,
+function SessionCard({
   label,
-  ship = false,
+  session,
 }: {
-  children: ReactNode;
-  label: string;
-  ship?: boolean;
+  label: "Live 1" | "Live 2";
+  session: LiveSession;
 }) {
   return (
-    <div
-      className={`rounded-2xl border p-4 ${
-        ship ? "border-[#d8b89d] bg-[#fbf4ee]" : "border-[#e5e5e5] bg-[#fafafa]"
-      }`}
-    >
-      <p className="mb-3 font-mono text-[0.66rem] font-medium uppercase tracking-[0.16em] text-[#737373]">
+    <div className="rounded-2xl border border-[#e5e5e5] bg-[#fafafa] p-4 transition-colors duration-200 ease-out hover:border-[#d4d4d4] hover:bg-white">
+      <p className="font-mono text-[0.66rem] font-medium uppercase tracking-[0.16em] text-[#737373]">
         {label}
       </p>
-      {children}
+      <p className="mt-5 font-heading text-2xl font-medium leading-7 tracking-normal text-[#171717]">
+        {session.title}
+      </p>
     </div>
   );
 }
 
-function MobileSyllabusCards() {
+function SyllabusRoadmap() {
   return (
-    <div className="grid gap-4 lg:hidden">
-      {syllabusWeeks.map((week) => (
-        <article
-          className="overflow-hidden rounded-[1.75rem] border border-[#d4d4d4] bg-white shadow-[0_12px_40px_rgba(0,0,0,0.06)]"
-          key={week.week}
-        >
-          <div className="flex items-start gap-4 border-[#e5e5e5] border-b bg-[#fafafa] p-5">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d4d4d4] bg-white text-sm font-semibold text-[#404040]">
-              {week.week}
-            </span>
-            <div>
-              <p className="font-mono text-[0.66rem] uppercase tracking-[0.16em] text-[#737373]">
-                Week {week.week}
-              </p>
-              <h3 className="mt-2 font-heading text-2xl font-medium tracking-normal text-[#171717]">
-                {week.theme}
-              </h3>
+    <div className="relative">
+      <div className="absolute top-8 bottom-8 left-5 hidden w-px bg-[#e5e5e5] lg:block" />
+      <div className="grid gap-4">
+        {syllabusWeeks.map((week) => (
+          <article
+            className="relative overflow-hidden rounded-[1.75rem] border border-[#d4d4d4] bg-white shadow-[0_12px_40px_rgba(0,0,0,0.06)] lg:grid lg:grid-cols-[15rem_1fr] lg:items-stretch"
+            key={week.week}
+          >
+            <div className="flex gap-4 border-[#e5e5e5] border-b bg-[#fafafa] p-5 lg:border-r lg:border-b-0">
+              <span className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d4d4d4] bg-white text-sm font-semibold text-[#404040]">
+                {week.week}
+              </span>
+              <div>
+                <p className="font-mono text-[0.66rem] uppercase tracking-[0.16em] text-[#737373]">
+                  Week {week.week}
+                </p>
+                <h3 className="mt-2 font-heading text-2xl font-medium leading-7 tracking-normal text-[#171717]">
+                  {week.theme}
+                </h3>
+              </div>
             </div>
-          </div>
-          <div className="grid gap-3 p-4 sm:p-5">
-            <MobileField label="Async prep">
-              <ContentList items={week.asyncPrep} />
-            </MobileField>
-            <MobileField label="Live 1">
-              <LiveSessionBlock session={week.liveOne} />
-            </MobileField>
-            <MobileField label="Live 2">
-              <LiveSessionBlock session={week.liveTwo} />
-            </MobileField>
-            <MobileField label="Private challenge">
-              <p className="text-sm leading-6 text-[#525252]">
-                {week.privateChallenge}
-              </p>
-            </MobileField>
-            <MobileField label="Public challenge" ship>
-              <p className="text-sm leading-6 text-[#4f3422]">
-                {week.publicChallenge}
-              </p>
-            </MobileField>
-          </div>
-        </article>
-      ))}
+            <div className="grid gap-3 p-4 sm:grid-cols-2 sm:p-5">
+              <SessionCard label="Live 1" session={week.liveOne} />
+              <SessionCard label="Live 2" session={week.liveTwo} />
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   );
 }
@@ -837,13 +515,12 @@ function SyllabusSection() {
           </div>
           <p className="max-w-2xl text-base leading-7 text-[#525252] lg:justify-self-end">
             The curriculum is intentionally paced around one product. Each week
-            has a technical/product focus, a private thinking rep, and a public
-            shipping rep.
+            gives you two live rooms: one for product judgment, one for shipping
+            the next proof point.
           </p>
         </div>
 
-        <SyllabusTable />
-        <MobileSyllabusCards />
+        <SyllabusRoadmap />
       </div>
     </section>
   );
@@ -934,6 +611,7 @@ export default function SyllabusPage() {
       <SyllabusSection />
       <OutcomeSection />
       <FinalCta />
+      <Footer />
     </main>
   );
 }
