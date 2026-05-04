@@ -1,16 +1,58 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 
-const scholarshipHref =
-  "mailto:academy@crafterstation.com?subject=Crafter%20Academy%20Scholarship";
 const syllabusHref =
   "https://www.notion.so/Syllabus-15a9864d081f8217822d01e1aa0be8ea?pvs=21";
+
+type FooterLink = {
+  label: string;
+  href: string;
+  external?: boolean;
+  disabled?: boolean;
+};
+
+const footerLinkGroups: { title: string; links: FooterLink[] }[] = [
+  {
+    title: "Program",
+    links: [
+      { label: "Curriculum", href: "#curriculum" },
+      { label: "Team", href: "#team" },
+      { label: "Pricing", href: "#pricing" },
+      { label: "FAQ", href: "#faq" },
+    ],
+  },
+  {
+    title: "Ecosystem",
+    links: [
+      {
+        label: "Crafter Station",
+        href: "https://crafterstation.com",
+        external: true,
+      },
+      {
+        label: "Crafter Research",
+        href: "https://research.crafter.ing/",
+        external: true,
+      },
+      { label: "Kebo", href: "#", disabled: true },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "Contact", href: "/contact" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+      { label: "Refund Policy", href: "/refund-policy" },
+    ],
+  },
+];
 
 const stats = [
   { label: "Duration", value: "10 weeks" },
   { label: "Classes", value: "20 live" },
   { label: "Cohort", value: "20 seats" },
-  { label: "Scholarships", value: "10" },
+  { label: "Investment", value: "USD 999" },
 ];
 
 const companyLogos = [
@@ -63,15 +105,15 @@ const programCards = [
 ];
 
 const builderFit = [
-  "You already understand programming fundamentals.",
-  "You want public deadlines, critique, and launch pressure.",
-  "You care about product taste, distribution, and business outcomes.",
+  "You are an engineer who wants sharper product judgment.",
+  "You want live pressure, direct critique, and weekly execution rhythm.",
+  "You are ready to invest time and money into a serious launch outcome.",
 ];
 
 const notFor = [
-  "You need a beginner programming course.",
-  "You want passive videos without live work.",
+  "You want passive content without live work or accountability.",
   "You are not ready to make and defend product decisions.",
+  "You are looking for a free or low-commitment experience.",
 ];
 
 const milestones = [
@@ -133,9 +175,9 @@ const team = [
 
 const faqs = [
   {
-    question: "Is this for beginners?",
+    question: "Who is this program for?",
     answer:
-      "No. Crafter Academy is for programmers who already understand code and want to turn that skill into shipped products.",
+      "Crafter Academy is for engineers who can already build and want stronger product judgment, launch discipline, and feedback on work that has to survive outside a repo.",
   },
   {
     question: "What will I build?",
@@ -150,12 +192,12 @@ const faqs = [
   {
     question: "What does it cost?",
     answer:
-      "A Cohort 01 seat is USD 999. It covers the 10-week live cohort, 20 classes, feedback cycles, materials, Demo Day, and Launch Day.",
+      "A Cohort 01 seat is USD 999. It covers the 10-week live program, 20 classes, feedback cycles, materials, Demo Day, and Launch Day.",
   },
   {
     question: "Are scholarships available?",
     answer:
-      "Yes. There are 10 scholarships for promising builders. Email academy@crafterstation.com with what you have built and what you want to ship next.",
+      "A limited number may be available. The main program is a paid USD 999 program for engineers ready to invest in their growth. Email academy@crafterstation.com with what you have built and what you want to ship next.",
   },
 ];
 
@@ -609,15 +651,12 @@ function PricingCard() {
             USD 999
           </h2>
           <p className="mt-5 max-w-xl text-base leading-7 text-[#525252] sm:text-lg">
-            One seat in the 10-week live cohort: product strategy, AI build,
-            launch pressure, feedback cycles, materials, Demo Day, and Launch
-            Day.
+            One-time investment for a 10-week live program: product strategy, AI
+            build, launch pressure, feedback cycles, materials, Demo Day, and
+            Launch Day.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/checkout">Reserve your seat</ButtonLink>
-            <ButtonLink href={scholarshipHref} variant="secondary">
-              Apply for scholarship
-            </ButtonLink>
+            <ButtonLink href="/checkout">Join the program</ButtonLink>
           </div>
         </div>
         <div className="border-[#e5e5e5] border-t bg-[#fafafa] p-6 sm:p-8 lg:border-t-0 lg:border-l lg:p-10">
@@ -626,7 +665,7 @@ function PricingCard() {
               ["Seats", "20"],
               ["Live classes", "20"],
               ["Duration", "10 weeks"],
-              ["Scholarships", "10 available"],
+              ["Investment", "USD 999"],
               ["Milestones", "Demo Day + Launch Day"],
             ].map(([label, value]) => (
               <div
@@ -639,8 +678,8 @@ function PricingCard() {
             ))}
           </div>
           <p className="mt-5 text-sm leading-6 text-[#525252]">
-            Scholarships are for promising builders who can show what they have
-            already built and what they want to ship next.
+            Built for engineers who want structure, feedback, and pressure
+            around one product they can launch.
           </p>
         </div>
       </div>
@@ -724,13 +763,13 @@ export default function Home() {
               Ship a real AI product in 10 weeks.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-7 text-[#525252] md:text-xl md:leading-7">
-              Crafter Academy is a live cohort by Crafter Station for
-              programmers who already code and now need the product, taste, and
+              Crafter Academy is a live program by Crafter Station for engineers
+              who already build and now want the product judgment, feedback, and
               launch discipline to make something people can use, share, and
               buy.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/checkout">Reserve your seat</ButtonLink>
+              <ButtonLink href="/checkout">Join the program</ButtonLink>
               <ButtonLink
                 href={syllabusHref}
                 target="_blank"
@@ -774,7 +813,7 @@ export default function Home() {
       >
         <SectionHeader
           eyebrow="Program"
-          text="The curriculum is built around one product and the real decisions needed to launch it. Less abstract coursework, more artifacts that survive contact with users."
+          text="The program is built around one product and the real decisions needed to launch it. Every week turns engineering effort into artifacts that survive contact with users."
           title="The shortest path from code to market is a product loop."
         />
         <div className="overflow-hidden rounded-[1.75rem] border border-[rgb(var(--border-subtle))] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
@@ -791,16 +830,16 @@ export default function Home() {
           <div>
             <Eyebrow>Designed for serious builders</Eyebrow>
             <h2 className="mt-3 max-w-2xl font-heading text-[36px] font-medium leading-10 tracking-normal text-[rgb(var(--content-emphasis))] md:text-5xl md:leading-none">
-              Not another beginner course.
+              Built for engineers who want launch pressure.
             </h2>
             <p className="mt-5 max-w-xl text-lg leading-7 text-[#525252]">
-              This is for programmers who can build, but need the rhythm,
-              pressure, and product judgment that usually starts after the
-              tutorial ends.
+              This is for engineers who can build, but want the rhythm,
+              pressure, and product judgment that turns technical ability into a
+              product people understand.
             </p>
             <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#dfd8ce] bg-white/60 px-3 py-1.5 text-[13px] font-medium leading-[19.5px] text-[rgb(var(--content-default))]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#b97044]" />
-              Calibrated for builders with technical base
+              Calibrated for engineers with technical base
             </div>
           </div>
           <FitDiagnostic />
@@ -822,7 +861,7 @@ export default function Home() {
             <ButtonLink href={syllabusHref} target="_blank" variant="secondary">
               View full syllabus
             </ButtonLink>
-            <ButtonLink href="/checkout">Reserve your seat</ButtonLink>
+            <ButtonLink href="/checkout">Join the program</ButtonLink>
           </div>
         </div>
         <CurriculumVisual />
@@ -834,7 +873,7 @@ export default function Home() {
       >
         <SectionHeader
           eyebrow="Outcomes"
-          text="The cohort should leave you with product evidence, not a folder of disconnected exercises. Every week moves the launch room forward."
+          text="The program should leave you with product evidence, not a folder of disconnected exercises. Every week moves the launch room forward."
           title="Build the product and the proof around it."
         />
         <ArtifactBoard />
@@ -913,7 +952,7 @@ export default function Home() {
         <SectionHeader
           eyebrow="FAQ"
           text="Short answers for the practical questions before you reserve a seat."
-          title="Know before you apply."
+          title="Know before you join."
         />
         <div className="grid gap-3">
           {faqs.map((faq) => (
@@ -951,20 +990,71 @@ export default function Home() {
               Build, demo, and launch with Cohort 01.
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/62 sm:text-lg">
-              Twenty seats for programmers ready to turn code into a product
+              Twenty seats for engineers ready to turn code into a product
               people can use, share, and buy.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <ButtonLink href="/checkout" variant="dark">
-                Reserve your seat
-              </ButtonLink>
-              <ButtonLink href={scholarshipHref} variant="darkSecondary">
-                Apply for scholarship
+                Join the program
               </ButtonLink>
             </div>
           </div>
         </div>
       </section>
+
+      <footer className="px-4 pb-12 pt-16 sm:px-6 sm:pb-16 sm:pt-24 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-12 border-t border-[#e5e5e5] pt-12 sm:grid-cols-[1.15fr_2fr] sm:gap-16 lg:pt-16">
+          <div className="flex flex-col justify-between gap-10">
+            <div>
+              {/* biome-ignore lint/performance/noImgElement: Local SVG brand mark is already optimized. */}
+              <img
+                alt="Crafter Academy"
+                className="h-8 w-auto"
+                src="/brand/logo-black.svg"
+              />
+              <p className="mt-6 max-w-sm text-base leading-7 text-[#737373]">
+                A live Crafter Station program for engineers building real AI
+                products.
+              </p>
+            </div>
+            <p className="text-sm text-[#737373]">
+              © 2026 Crafter Station. All rights reserved.
+            </p>
+          </div>
+          <nav
+            aria-label="Footer links"
+            className="grid gap-10 sm:grid-cols-3 sm:gap-8"
+          >
+            {footerLinkGroups.map((group) => (
+              <div key={group.title}>
+                <h2 className="font-heading text-lg font-medium text-[#171717]">
+                  {group.title}
+                </h2>
+                <ul className="mt-5 space-y-4">
+                  {group.links.map((link) => (
+                    <li key={link.label}>
+                      {link.disabled ? (
+                        <span className="text-sm text-[#a3a3a3]">
+                          {link.label}
+                        </span>
+                      ) : (
+                        <a
+                          className="text-sm text-[#737373] transition-colors hover:text-[#171717]"
+                          href={link.href}
+                          rel={link.external ? "noreferrer" : undefined}
+                          target={link.external ? "_blank" : undefined}
+                        >
+                          {link.label}
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+        </div>
+      </footer>
     </main>
   );
 }
