@@ -75,13 +75,13 @@ const notFor = [
 const milestones = [
   {
     week: "Weeks 1-2",
-    title: "Find the product",
-    text: "Problem, audience, promise, product wedge, and technical base.",
+    title: "Find signal and get public",
+    text: "Problem validation, first deploy, public profile, and LLM foundations.",
   },
   {
     week: "Weeks 3-4",
-    title: "Build the system",
-    text: "AI apps, auth, data, agents, demos, and product UI proof.",
+    title: "Add taste and systems",
+    text: "Taste, auth, product demos, decks, and orchestrated agent workflows.",
   },
   {
     week: "Week 5",
@@ -91,7 +91,7 @@ const milestones = [
   {
     week: "Weeks 6-10",
     title: "Launch",
-    text: "Pricing, growth, polish, metrics, public story, and Launch Day.",
+    text: "Pricing, billing, growth experiments, WhatsApp agents, multimodal AI, production polish, and Launch Day.",
   },
 ];
 
@@ -100,7 +100,7 @@ const artifacts = [
   "Product landing page",
   "Demo Day pitch",
   "Checkout-ready offer",
-  "Launch story",
+  "Growth experiment",
   "Public release plan",
 ];
 
