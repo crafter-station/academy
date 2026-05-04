@@ -458,31 +458,6 @@ function RhythmSection() {
           ))}
         </div>
       </div>
-
-      <div className="mt-6 grid gap-4 rounded-[1.75rem] border border-[#dfd8ce] bg-[#f7f4ee] p-5 sm:grid-cols-[0.75fr_1.25fr] sm:p-6 lg:p-8">
-        <div>
-          <SectionLabel>Live time rule</SectionLabel>
-          <h3 className="mt-3 font-heading text-2xl font-medium tracking-normal text-[#171717]">
-            Do the setup before the room opens.
-          </h3>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-2xl border border-[#e5dccf] bg-white/70 p-4">
-            <p className="text-sm font-semibold text-[#171717]">Do</p>
-            <p className="mt-2 text-sm leading-6 text-[#525252]">
-              Record setup processes crafters can follow async, then use class
-              for product judgment and live execution.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-[#e5dccf] bg-white/70 p-4">
-            <p className="text-sm font-semibold text-[#171717]">Do not</p>
-            <p className="mt-2 text-sm leading-6 text-[#525252]">
-              Spend live classes installing tools, configuring local machines,
-              or walking through prerequisite setup.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
