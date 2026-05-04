@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 type LiveSession = {
   title: string;
+  description: string;
 };
 
 type SyllabusWeek = {
@@ -21,103 +22,143 @@ type SyllabusWeek = {
 
 const syllabusWeeks: SyllabusWeek[] = [
   {
-    week: 0,
+    week: 1,
     theme: "Problems and first deploy",
     liveOne: {
-      title: "Signal Hunting",
+      title: "Problem Radar",
+      description:
+        "Find promising problems, validate product ideas, study early adopters, and read market signals without waiting for permission.",
     },
     liveTwo: {
       title: "Zero to URL",
-    },
-  },
-  {
-    week: 1,
-    theme: "LLMs and protected apps",
-    liveOne: {
-      title: "The LLM Workbench",
-    },
-    liveTwo: {
-      title: "Walls, Keys, and Quotas",
+      description:
+        "Use an AI coding workflow to take a simple full-stack app from blank repo to deployed product surface.",
     },
   },
   {
     week: 2,
-    theme: "Taste and agent orchestration",
+    theme: "Public profile and LLM foundations",
     liveOne: {
-      title: "Taste Under Constraints",
+      title: "Surface Area",
+      description:
+        "Build the mindset and operating rhythm for publishing in public, growing trust, and making your work easier to discover.",
     },
     liveTwo: {
-      title: "The Agent Factory",
+      title: "The LLM Workbench",
+      description:
+        "Understand how LLMs work, when to use AI SDK versus raw APIs, and how tools, temperature, OCR, and agentic UX fit together.",
     },
   },
   {
     week: 3,
-    theme: "Demos and voice AI",
+    theme: "Taste and protected apps",
     liveOne: {
-      title: "The One-Minute Launch Film",
+      title: "Taste Under Constraints",
+      description:
+        "Use prompting, visual references, and Claude Design to build interfaces people actually want to use.",
     },
     liveTwo: {
-      title: "Products That Talk Back",
+      title: "The Guarded Chatbot",
+      description:
+        "Add authentication, rate limits, and product boundaries so AI features survive real users instead of demo-only conditions.",
     },
   },
   {
     week: 4,
-    theme: "Demo Day",
+    theme: "Demos and agent orchestration",
     liveOne: {
-      title: "Demo Day: The Room Reacts",
+      title: "Demo Theater",
+      description:
+        "Shape hooks, screencasts, decks, and narrative flow so a product demo lands fast and makes the value obvious.",
     },
     liveTwo: {
-      title: "From Feedback to Flight Plan",
+      title: "The Agent Assembly Line",
+      description:
+        "Orchestrate async workflows with Trigger.dev, research agents, Firecrawl, Exa, queues, realtime updates, tags, and subscriptions.",
     },
   },
   {
     week: 5,
-    theme: "Pricing and billing",
+    theme: "Demo Day",
     liveOne: {
-      title: "The Price Is the Product",
+      title: "Demo Day: The Room Reacts",
+      description:
+        "Present the product as it exists at week five and collect direct signal on what is clear, confusing, or missing.",
     },
     liveTwo: {
-      title: "Checkout Without Guesswork",
+      title: "From Feedback to Flight Plan",
+      description:
+        "Convert demo feedback into a mentor-reviewed product plan, launch scope, risk list, and next build priorities.",
     },
   },
   {
     week: 6,
-    theme: "Public profile and WhatsApp agents",
+    theme: "Pricing and billing",
     liveOne: {
-      title: "Your Builder Signal",
+      title: "The Price Is the Product",
+      description:
+        "Design pricing models, free trials, credits, subscriptions, one-time payments, and usage limits around the value users feel.",
     },
     liveTwo: {
-      title: "Agents in the Group Chat",
+      title: "Checkout Without Guesswork",
+      description:
+        "Implement billing flows with Stripe or Polar patterns: checkout, webhooks, entitlements, plans, limits, and invoices.",
     },
   },
   {
     week: 7,
-    theme: "Launch and growth experiments",
+    theme: "Growth experiments and WhatsApp agents",
     liveOne: {
-      title: "Launch Like a Campaign",
+      title: "Tiny Bets, Real Traffic",
+      description:
+        "Run practical growth experiments with ads, creative testing, landing-page conversion, analytics, ICP discovery, and competitor strategy.",
     },
     liveTwo: {
-      title: "Tiny Bets, Real Traffic",
+      title: "Agents in the Group Chat",
+      description:
+        "Use WhatsApp automation patterns to create customer-success bots and product workflows where users already communicate.",
     },
   },
   {
     week: 8,
-    theme: "Production polish and mentor review",
+    theme: "Launch channels and multimodal AI",
     liveOne: {
-      title: "The Last 10% That Converts",
+      title: "Launch Like a Campaign",
+      description:
+        "Build a launch checklist across Product Hunt, Hacker News, Reddit, LinkedIn, X, communities, newsletters, timing, and assets.",
     },
     liveTwo: {
-      title: "Mentor War Room",
+      title: "Multimodal Magic",
+      description:
+        "Explore voice, image, and video AI with tools like ElevenLabs, Fal.ai, AI SDK, and other APIs for richer product experiences.",
     },
   },
   {
     week: 9,
+    theme: "Production polish and mentor review",
+    liveOne: {
+      title: "The Last 10% That Converts",
+      description:
+        "Tighten observability, logging, PostHog analytics, error tracking, performance, security basics, and onboarding polish.",
+    },
+    liveTwo: {
+      title: "Mentor War Room",
+      description:
+        "Review UX, technical risks, positioning, pricing, and launch readiness directly with mentors before the final push.",
+    },
+  },
+  {
+    week: 10,
     theme: "Launch Day",
     liveOne: {
       title: "Launch Day: Go Public",
+      description:
+        "Present what you built, your go-to-market strategy, pricing, results, lessons, and the next product step.",
     },
     liveTwo: {
       title: "After the Spike",
+      description:
+        "Turn launch feedback, metrics, and attention into the next iteration instead of letting momentum disappear.",
     },
   },
 ];
@@ -284,7 +325,7 @@ function HeroVisual() {
             </h2>
             <div className="mt-8 grid gap-2">
               {[
-                "Problem signal",
+                "Problem radar",
                 "AI product system",
                 "Demo Day critique",
                 "Pricing and billing",
@@ -460,6 +501,9 @@ function SessionCard({
       </p>
       <p className="mt-5 font-heading text-2xl font-medium leading-7 tracking-normal text-[#171717]">
         {session.title}
+      </p>
+      <p className="mt-3 text-sm leading-6 text-[#525252]">
+        {session.description}
       </p>
     </div>
   );
