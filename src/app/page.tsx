@@ -118,14 +118,24 @@ const team = [
   },
   { name: "Railly Hugo", role: "Design Engineer", image: "/team/railly.png" },
   {
-    name: "Nicolas Vargas",
-    role: "Backend Developer",
-    image: "/team/nicolas.png",
+    name: "Emmy Arias",
+    role: "Growth & Marketing",
+    image: "/team/emmy.png",
   },
   {
-    name: "Gabriel Antunes",
-    role: "AI Engineer & Full-Stack Developer",
-    image: "/team/gabriel.png",
+    name: "Juan Ortega",
+    role: "Software Engineer",
+    image: "/team/juan.png",
+  },
+  {
+    name: "Ignacio Velasquez",
+    role: "Growth & Automation",
+    image: "/team/nacho.png",
+  },
+  {
+    name: "Ignacio Rueda",
+    role: "Backend Engineer",
+    image: "/team/ignacio.png",
   },
 ];
 
