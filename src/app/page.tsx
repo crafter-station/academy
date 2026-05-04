@@ -105,18 +105,12 @@ const artifacts = [
 ];
 
 const team = [
-  {
-    name: "Anthony Cueva",
-    role: "Product Engineer",
-    image: "/team/cueva.png",
-  },
   { name: "Shiara Arauzo", role: "Design Engineer", image: "/team/shiara.png" },
   {
     name: "Cristian Correa",
     role: "Data & Software Engineer",
     image: "/team/cris.png",
   },
-  { name: "Railly Hugo", role: "Design Engineer", image: "/team/railly.png" },
   {
     name: "Emmy Arias",
     role: "Growth & Marketing",
@@ -128,14 +122,24 @@ const team = [
     image: "/team/juan.png",
   },
   {
-    name: "Ignacio Velasquez",
+    name: "Ignacio Rueda",
+    role: "Backend Engineer",
+    image: "/team/ignacio.png",
+  },
+  {
+    name: "Jibaru",
     role: "Growth & Automation",
     image: "/team/nacho.png",
   },
   {
-    name: "Ignacio Rueda",
-    role: "Backend Engineer",
-    image: "/team/ignacio.png",
+    name: "Nicolas Vargas",
+    role: "Backend Developer",
+    image: "/team/nicolas.png",
+  },
+  {
+    name: "Anthony Cueva",
+    role: "Product Engineer",
+    image: "/team/cueva.png",
   },
 ];
 
