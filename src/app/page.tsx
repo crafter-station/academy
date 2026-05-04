@@ -1,8 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 
-const syllabusHref =
-  "https://www.notion.so/Syllabus-15a9864d081f8217822d01e1aa0be8ea?pvs=21";
+const syllabusHref = "/syllabus";
 
 type FooterLink = {
   label: string;
@@ -15,7 +14,7 @@ const footerLinkGroups: { title: string; links: FooterLink[] }[] = [
   {
     title: "Program",
     links: [
-      { label: "Curriculum", href: "#curriculum" },
+      { label: "Curriculum", href: "/syllabus" },
       { label: "Team", href: "#team" },
       { label: "Pricing", href: "#pricing" },
       { label: "FAQ", href: "#faq" },
@@ -770,11 +769,7 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/checkout">Join the program</ButtonLink>
-              <ButtonLink
-                href={syllabusHref}
-                target="_blank"
-                variant="secondary"
-              >
+              <ButtonLink href={syllabusHref} variant="secondary">
                 View syllabus
               </ButtonLink>
             </div>
@@ -858,7 +853,7 @@ export default function Home() {
             title="A compressed path from idea to Launch Day."
           />
           <div className="flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={syllabusHref} target="_blank" variant="secondary">
+            <ButtonLink href={syllabusHref} variant="secondary">
               View full syllabus
             </ButtonLink>
             <ButtonLink href="/checkout">Join the program</ButtonLink>
