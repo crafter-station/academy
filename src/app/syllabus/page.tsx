@@ -177,7 +177,7 @@ const syllabusWeeks: SyllabusWeek[] = [
       title: "Billing implementation",
       instructor: "Anthony",
       details: [
-        "Polar and Stripe checkout flows.",
+        "Stripe checkout flows.",
         "Webhooks, entitlements, plans, limits, and invoices.",
         "Connect billing choices to product packaging.",
       ],

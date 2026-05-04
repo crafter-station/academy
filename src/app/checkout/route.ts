@@ -1,5 +1,5 @@
-import { Polar } from "@polar-sh/sdk";
 import { NextResponse } from "next/server";
+import Stripe from "stripe";
 
 export const runtime = "nodejs";
 
@@ -13,16 +13,6 @@ function getRequiredEnv(name: string) {
   return value;
 }
 
-function getPolarServer() {
-  const server = process.env.POLAR_SERVER ?? "production";
-
-  if (server !== "production" && server !== "sandbox") {
-    throw new Error("POLAR_SERVER must be production or sandbox");
-  }
-
-  return server;
-}
-
 function getSiteUrl(request: Request) {
   return (
     process.env.NEXT_PUBLIC_SITE_URL ?? new URL(request.url).origin
@@ -32,27 +22,44 @@ function getSiteUrl(request: Request) {
 export async function GET(request: Request) {
   try {
     const siteUrl = getSiteUrl(request);
-    const polar = new Polar({
-      accessToken: getRequiredEnv("POLAR_ACCESS_TOKEN"),
-      server: getPolarServer(),
-    });
+    const priceId = getRequiredEnv("STRIPE_PRICE_ID");
+    const stripe = new Stripe(getRequiredEnv("STRIPE_SECRET_KEY"));
 
-    const checkout = await polar.checkouts.create({
-      products: [getRequiredEnv("POLAR_PRODUCT_ID")],
-      successUrl: `${siteUrl}/?checkout=success&checkout_id={CHECKOUT_ID}`,
-      returnUrl: siteUrl,
+    const session = await stripe.checkout.sessions.create({
+      allow_promotion_codes: true,
+      cancel_url: `${siteUrl}/`,
+      line_items: [
+        {
+          price: priceId,
+          quantity: 1,
+        },
+      ],
       metadata: {
         cohort: "1",
+        priceId,
         product: "crafter-academy",
       },
+      mode: "payment",
+      payment_intent_data: {
+        metadata: {
+          cohort: "1",
+          priceId,
+          product: "crafter-academy",
+        },
+      },
+      success_url: `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
     });
 
-    return NextResponse.redirect(checkout.url, 303);
+    if (!session.url) {
+      throw new Error("Stripe did not return a checkout URL");
+    }
+
+    return NextResponse.redirect(session.url, 303);
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Unable to create checkout";
 
-    return new Response(`Polar checkout configuration error: ${message}`, {
+    return new Response(`Stripe checkout configuration error: ${message}`, {
       status: 500,
     });
   }

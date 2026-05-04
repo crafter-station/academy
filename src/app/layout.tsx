@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import localFont from "next/font/local";
@@ -31,7 +32,7 @@ const satoshi = localFont({
 export const metadata: Metadata = {
   title: "Crafter Academy Cohort 01 | Ship a Real AI Product",
   description:
-    "A 10-week live cohort by Crafter Station for programmers ready to build, demo, and launch a real AI product.",
+    "A 10-week live program by Crafter Station for engineers ready to build, demo, and launch a real AI product.",
 };
 
 export default function RootLayout({
@@ -51,7 +52,9 @@ export default function RootLayout({
         "font-sans",
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ClerkProvider>{children}</ClerkProvider>
+      </body>
     </html>
   );
 }
